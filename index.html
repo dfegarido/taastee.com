@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taastee - Put your diet on autopilot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Taastee</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#supported-diets">Supported Diets</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#professionals">For Professionals</a>
+                <button class="btn-secondary">Sign Up</button>
+                <button class="btn-link">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Put your diet on <em>autopilot.</em></h1>
+            <p class="hero-subtitle">
+                Taastee creates personalized meal plans based on your food preferences, budget, and schedule. 
+                Reach your diet and nutritional goals with our calorie calculator, weekly meal plans, grocery lists and more.
+            </p>
+
+            <!-- Meal Plan Generator -->
+            <div class="meal-plan-generator">
+                <h2>Create your meal plan right here in seconds</h2>
+                
+                <div class="generator-form">
+                    <div class="form-group">
+                        <label>Preferred Diet</label>
+                        <select id="diet-select" class="form-control">
+                            <option value="anything">Anything</option>
+                            <option value="keto">Keto</option>
+                            <option value="mediterranean">Mediterranean</option>
+                            <option value="paleo">Paleo</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="vegetarian">Vegetarian</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>I want to eat <input type="number" id="calories-input" class="calories-input" value="2000" min="1000" max="5000"> calories</label>
+                        <a href="#" class="link-text">Not sure? Try our Calorie Calculator</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label>in <input type="number" id="meals-input" class="meals-input" value="3" min="1" max="6"> meals</label>
+                    </div>
+
+                    <div class="macros-group">
+                        <div class="macro-item">
+                            <label>At least <strong id="carbs-display">90g</strong> Carbs</label>
+                            <input type="range" id="carbs-slider" class="macro-slider" min="0" max="300" value="90">
+                        </div>
+                        <div class="macro-item">
+                            <label>At least <strong id="fat-display">40g</strong> Fat</label>
+                            <input type="range" id="fat-slider" class="macro-slider" min="0" max="200" value="40">
+                        </div>
+                        <div class="macro-item">
+                            <label>At least <strong id="protein-display">90g</strong> Protein</label>
+                            <input type="range" id="protein-slider" class="macro-slider" min="0" max="300" value="90">
+                        </div>
+                    </div>
+
+                    <p class="account-prompt">Want to set specific macro targets? <a href="#">Create a free account!</a></p>
+
+                    <button id="generate-btn" class="btn-primary btn-large">Generate</button>
+                </div>
+
+                <div id="meal-plan-result" class="meal-plan-result hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Eating smart has never been easier</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Follow any eating style or create your own</h3>
+                    <p>You can customize popular eating styles like vegan and paleo to match your needs and preferences.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Reduce food waste</h3>
+                    <p>Planning ahead means less produce going bad in the fridge. Add what you already own to the virtual pantry and our algorithms will use it up with priority.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Take the anxiety out of picking what to eat</h3>
+                    <p>Make the important decisions ahead of time and on your own schedule. Then there's nothing to worry about when it's time to eat.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Automatic grocery lists</h3>
+                    <p>No more skipping meals because you're missing ingredients. Review your meals for the week and the grocery list automatically updates. Then get it delivered with our Instacart or AmazonFresh integration.</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <button class="btn-primary">Create a free account →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ratings Section -->
+    <section class="ratings">
+        <div class="container">
+            <h2 class="section-title">Top Rated</h2>
+            <p class="rating-badge">CNN Underscored Best Meal Planning App of 2025</p>
+            
+            <div class="ratings-grid">
+                <div class="rating-item">
+                    <p>Get our iOS app from the App Store</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="rating-text"><strong>4.7</strong></p>
+                    <p class="rating-count">Over 21,000 reviews</p>
+                </div>
+                
+                <div class="rating-item">
+                    <p>Get our Android app on Google Play</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="rating-text"><strong>4.6</strong></p>
+                    <p class="rating-count">Over 9,000 reviews</p>
+                </div>
+            </div>
+
+            <div class="press-mentions">
+                <p>Washington Post</p>
+                <p>The Guardian</p>
+                <p>Healthline</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <blockquote>
+                        "Taastee not only helps me hit my macros, but also makes sure I'm not eating the same bland thing every day. I've lost 35 lbs over the past year, and with Taastee, I'm eating and performing better than ever."
+                    </blockquote>
+                    <cite>Sam Konowich @samkonthemankon</cite>
+                </div>
+                
+                <div class="testimonial-card">
+                    <blockquote>
+                        "I found out about Taastee and lost 32 lbs in 6 months! Now I'm a fit over 50 female in amazing condition, and this site is what I refer to several times a day to ensure I eat properly and manage my macros."
+                    </blockquote>
+                    <cite>Meg M., awesome Taastee user</cite>
+                </div>
+                
+                <div class="testimonial-card">
+                    <blockquote>
+                        "After being diagnosed with sleep apnea and high blood pressure, I picked up this app and followed the nutrition plan religiously. Since then I've lost over 40lbs. I still have 20lbs or so to go before I get to where I really want to be, but I'm thankful for the life this all has helped me achieve."
+                    </blockquote>
+                    <cite>Sam A., awesome Taastee user</cite>
+                </div>
+                
+                <div class="testimonial-card">
+                    <blockquote>
+                        "I started tracking my weight in April when I was 184lbs. In May I signed up for Taastee and immediately appreciated being able to just cook the menu and not worry about what to have for dinner. By November I was down to 155lbs and I still use Taastee today!"
+                    </blockquote>
+                    <cite>Ben Kutil, Product designer</cite>
+                </div>
+            </div>
+
+            <p class="disclaimer">
+                <em>Disclaimer:</em> These are real testimonials, but we're required to tell you that results aren't guaranteed. 
+                Taastee is a tool for planning your meals, and your success will depend on adhering to your planned meals and nutrition goals. 
+                Only you can make yourself improve your diet, but we'll be here to help.
+            </p>
+            <p class="disclaimer">
+                Taastee is not a substitute for professional medical advice. You should consult with a medical professional before making significant changes to your diet.
+            </p>
+        </div>
+    </section>
+
+    <!-- Professionals Section -->
+    <section class="professionals">
+        <div class="container">
+            <h2>Taastee Pro</h2>
+            <h3>For Health & Fitness Professionals</h3>
+            <p>Powerful, fast meal planning to level up your business.</p>
+            <button class="btn-link">Learn More</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Get Started</h4>
+                    <ul>
+                        <li><a href="#">Get our iOS app from the App Store</a></li>
+                        <li><a href="#">Get our Android app on Google Play</a></li>
+                        <li><a href="#">Browse Foods</a></li>
+                        <li><a href="#">Calorie Calculator</a></li>
+                        <li><a href="#">Nutrient Glossary</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Meal Planning Blog</a></li>
+                        <li><a href="#">Gift Codes</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">For Affiliates</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">DMCA</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Meal Plans</h4>
+                    <ul>
+                        <li><a href="#">1500 Calorie Meal Plan</a></li>
+                        <li><a href="#">1800 Calorie Meal Plan</a></li>
+                        <li><a href="#">2500 Calorie Meal Plan</a></li>
+                        <li><a href="#">3500 Calorie Meal Plan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>©2025 Taastee Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
