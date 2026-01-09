@@ -6,16 +6,24 @@
 }
 
 :root {
-    --primary-color: #4CAF50;
-    --primary-dark: #45a049;
-    --secondary-color: #2196F3;
-    --text-dark: #333;
-    --text-light: #666;
-    --bg-light: #f8f9fa;
-    --border-color: #e0e0e0;
+    --primary-color: #10b981;
+    --primary-dark: #059669;
+    --secondary-color: #3b82f6;
+    --accent-color: #f59e0b;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f9fafb;
+    --bg-lighter: #ffffff;
+    --border-color: #e5e7eb;
     --white: #ffffff;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-hero: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
 }
 
 body {
@@ -100,30 +108,155 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 5rem 0 6rem;
+    background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
+}
+
+.trust-badge {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.trust-badge .emoji {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
 }
 
 .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
     text-align: center;
     color: var(--text-dark);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
-.hero-title em {
-    font-style: italic;
-    color: var(--primary-color);
+.hero-title .highlight {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--text-light);
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+}
+
+.hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem auto;
+    flex-wrap: wrap;
+    max-width: 900px;
+}
+
+.badge-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.badge-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.badge-emoji {
+    font-size: 2.5rem;
+}
+
+.badge-item strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.badge-item p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.press-section {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.press-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.press-logos {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.press-logos span {
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.press-logos span:hover {
+    opacity: 1;
+}
+
+.recipe-badge {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-lg);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.recipe-icon {
+    font-size: 2rem;
+}
+
+.recipe-badge strong {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 /* Meal Plan Generator */
@@ -326,8 +459,8 @@ body {
     font-size: 0.9rem;
 }
 
-/* Features Section */
-.features {
+/* How It Works Section */
+.how-it-works {
     padding: 5rem 0;
     background-color: var(--white);
 }
@@ -335,8 +468,106 @@ body {
 .section-title {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.step-card {
+    text-align: center;
+    padding: 2rem;
+    transition: transform 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.step-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.step-card p {
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Stats Section */
+.stats-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--white);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 2rem 1rem;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: var(--white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.stat-item p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+/* Features Section */
+.features {
+    padding: 5rem 0;
+    background-color: var(--bg-light);
 }
 
 .features-grid {
@@ -347,31 +578,266 @@ body {
 }
 
 .feature-card {
-    padding: 2rem;
-    background-color: var(--bg-light);
-    border-radius: 8px;
+    padding: 2.5rem;
+    background-color: var(--white);
+    border-radius: 16px;
     transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow);
+    text-align: center;
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
 }
 
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
 .feature-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
     color: var(--text-dark);
+    font-weight: 600;
 }
 
 .feature-card p {
     color: var(--text-light);
-    line-height: 1.8;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 .cta-section {
     text-align: center;
     margin-top: 3rem;
+}
+
+/* Progress Tracking Showcase */
+.progress-showcase {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.progress-showcase h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.showcase-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+}
+
+.daily-summary-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-xl);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.summary-header h4 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.summary-badge {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.summary-grade {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: auto;
+}
+
+.macro-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.macro-bar-item label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.macro-bar-item label span {
+    color: var(--text-light);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease-out;
+}
+
+.progress-fill.protein {
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+}
+
+.progress-fill.carbs {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.progress-fill.fats {
+    background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.summary-tip {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.tip-emoji {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.summary-tip p {
+    color: var(--text-dark);
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Diet Plans Section */
+.diet-plans {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.diet-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.diet-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: block;
+}
+
+.diet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.diet-card-image {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.diet-card-image.keto {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.diet-card-image.vegan {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+.diet-card-image.balanced {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.diet-card-image.paleo {
+    background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+}
+
+.diet-emoji {
+    font-size: 4rem;
+}
+
+.diet-card h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 1.5rem 0.5rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.diet-card p {
+    color: var(--text-light);
+    margin: 0 1.5rem 1rem;
+    font-size: 0.95rem;
+}
+
+.diet-link {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 0 1.5rem 1.5rem;
+    font-size: 0.95rem;
+}
+
+.btn-secondary-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.btn-secondary-outline:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Ratings Section */
@@ -479,6 +945,343 @@ body {
     line-height: 1.6;
 }
 
+/* Community Love Section */
+.community-love {
+    padding: 5rem 0;
+    background-color: var(--bg-light);
+}
+
+.love-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.love-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.love-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.stars-rating {
+    font-size: 1.5rem;
+    color: #FFD700;
+    letter-spacing: 0.2rem;
+}
+
+.love-card blockquote {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    font-style: italic;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.love-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.love-author strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+}
+
+.author-achievement {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+    transition: box-shadow 0.3s;
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: var(--bg-light);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 400;
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 2rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 0 2rem 1.5rem;
+}
+
+.faq-answer p {
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Why Taastee Section */
+.why-taastee {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.comparison-table {
+    max-width: 900px;
+    margin: 3rem auto 0;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.comparison-row:last-child {
+    border-bottom: none;
+}
+
+.comparison-header {
+    background: var(--bg-light);
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+}
+
+.comparison-feature {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.comparison-col {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.highlight-col {
+    background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+    margin: -1.5rem -1rem;
+    padding: 1.5rem 1rem;
+    font-weight: 700;
+}
+
+.comparison-header .highlight-col {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+}
+
+/* Final CTA Section */
+.final-cta {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-emoji {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.cta-label {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.final-cta h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+
+.cta-description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    opacity: 0.95;
+    margin-bottom: 2.5rem;
+}
+
+.btn-cta-large {
+    background-color: var(--white);
+    color: #667eea;
+    border: none;
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cta-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cta-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.cta-benefits span {
+    font-weight: 500;
+}
+
+/* How Taastee Helps Section */
+.how-helps {
+    padding: 5rem 0;
+    background-color: var(--bg-light);
+}
+
+.helps-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.helps-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.helps-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.helps-feature-item {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.helps-feature-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.helps-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.helps-feature-item strong {
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
 /* Professionals Section */
 .professionals {
     padding: 4rem 0;
@@ -572,12 +1375,32 @@ body {
         font-size: 0.9rem;
     }
 
+    .hero {
+        padding: 3rem 0 4rem;
+    }
+
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 1.05rem;
+    }
+
+    .hero-badges {
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 400px;
+    }
+
+    .badge-item {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .press-logos {
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .meal-plan-generator {
@@ -586,16 +1409,82 @@ body {
 
     .section-title {
         font-size: 2rem;
+        line-height: 1.3;
     }
 
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .steps-grid,
     .features-grid,
-    .testimonials-grid {
+    .diet-cards-grid,
+    .testimonials-grid,
+    .love-cards-grid,
+    .helps-features {
         grid-template-columns: 1fr;
     }
 
-    .press-mentions {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .comparison-row {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .comparison-feature {
+        font-size: 0.9rem;
+    }
+
+    .comparison-col {
+        font-size: 1.2rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .faq-answer {
+        padding: 0 1.5rem;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 1.5rem 1.2rem;
+    }
+
+    .final-cta {
+        padding: 4rem 0;
+    }
+
+    .final-cta h2 {
+        font-size: 2rem;
+    }
+
+    .cta-description {
+        font-size: 1rem;
+    }
+
+    .cta-benefits {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.8rem;
+    }
+
+    .daily-summary-card {
+        padding: 2rem;
+    }
+
+    .summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-grade {
+        margin-left: 0;
     }
 }
 
@@ -608,14 +1497,53 @@ body {
     .nav-links {
         width: 100%;
         justify-content: center;
+        font-size: 0.85rem;
     }
 
     .hero {
-        padding: 2rem 0;
+        padding: 2rem 0 3rem;
+    }
+
+    .trust-badge {
+        font-size: 0.85rem;
     }
 
     .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .badge-item {
+        padding: 1.2rem 1.5rem;
+    }
+
+    .badge-emoji {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
         font-size: 1.5rem;
+    }
+
+    .step-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .diet-emoji {
+        font-size: 3rem;
     }
 
     .meal-plan-generator {
@@ -630,6 +1558,111 @@ body {
     .calories-input,
     .meals-input {
         width: 100%;
+    }
+
+    .testimonial-card,
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .final-cta {
+        padding: 3rem 0;
+    }
+
+    .cta-emoji {
+        font-size: 2.5rem;
+    }
+
+    .final-cta h2 {
+        font-size: 1.7rem;
+    }
+
+    .btn-cta-large {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .progress-showcase h3 {
+        font-size: 1.5rem;
+    }
+
+    .showcase-subtitle {
+        font-size: 1rem;
+    }
+
+    .daily-summary-card {
+        padding: 1.5rem;
+    }
+
+    .summary-header h4 {
+        font-size: 1.3rem;
+    }
+
+    .summary-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .summary-grade {
+        font-size: 1.5rem;
+    }
+
+    .recipe-badge {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .recipe-icon {
+        font-size: 1.5rem;
+    }
+
+    .recipe-badge strong {
+        font-size: 0.95rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .comparison-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .comparison-feature {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .comparison-col {
+        font-size: 1.5rem;
+    }
+
+    .highlight-col {
+        margin: 0;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .love-card {
+        padding: 2rem;
+    }
+
+    .helps-content p {
+        font-size: 1rem;
+    }
+
+    .helps-feature-item {
+        flex-direction: column;
+        text-align: center;
     }
 }
 

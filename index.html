@@ -17,7 +17,7 @@
                 <a href="#supported-diets">Supported Diets</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#professionals">For Professionals</a>
-                <button class="btn-secondary">Sign Up</button>
+                <a href="onboarding.html"><button class="btn-secondary">Get Started</button></a>
                 <button class="btn-link">Sign In</button>
             </div>
         </div>
@@ -26,11 +26,54 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Put your diet on <em>autopilot.</em></h1>
+            <div class="trust-badge">
+                <span class="emoji">🥗</span> Trusted by 15,000+ food lovers
+            </div>
+            <h1 class="hero-title">Eat Fresh. <br><span class="highlight">Live Better.</span></h1>
             <p class="hero-subtitle">
-                Taastee creates personalized meal plans based on your food preferences, budget, and schedule. 
-                Reach your diet and nutritional goals with our calorie calculator, weekly meal plans, grocery lists and more.
+                Create your personalized weekly menu that adapts to your taste, schedule, and goals. 
+                Fresh ingredients, simple recipes, and zero food waste.
             </p>
+            <div class="hero-badges">
+                <div class="badge-item">
+                    <span class="badge-emoji">🔥</span>
+                    <div>
+                        <strong>Calories</strong>
+                        <p>Perfectly Balanced</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-emoji">🥑</span>
+                    <div>
+                        <strong>Ingredients</strong>
+                        <p>100% Fresh</p>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-emoji">⏱️</span>
+                    <div>
+                        <strong>Time</strong>
+                        <p>Under 30 mins</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Press Mentions -->
+            <div class="press-section">
+                <p class="press-label">As seen on</p>
+                <div class="press-logos">
+                    <span>CNN</span>
+                    <span>Healthline</span>
+                    <span>Washington Post</span>
+                    <span>The Guardian</span>
+                </div>
+            </div>
+            
+            <!-- Recipe Badge -->
+            <div class="recipe-badge">
+                <span class="recipe-icon">📚</span>
+                <strong>1000+ Premium Recipes</strong>
+            </div>
 
             <!-- Meal Plan Generator -->
             <div class="meal-plan-generator">
@@ -73,9 +116,9 @@
                         </div>
                     </div>
 
-                    <p class="account-prompt">Want to set specific macro targets? <a href="#">Create a free account!</a></p>
+                    <p class="account-prompt">Want to set specific macro targets? <a href="onboarding.html">Create a free account!</a></p>
 
-                    <button id="generate-btn" class="btn-primary btn-large">Generate Meal Plan</button>
+                    <button id="generate-btn" class="btn-primary btn-large" onclick="window.location.href='onboarding.html'">Generate Meal Plan</button>
                 </div>
 
                 <div id="meal-plan-result" class="meal-plan-result hidden"></div>
@@ -83,35 +126,191 @@
         </div>
     </section>
 
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Smart eating in 3 steps</h2>
+            <p class="section-subtitle">We handle the planning, counting, and organizing. You just enjoy the food.</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Set your goals</h3>
+                    <p>Tell us what you like to eat and what you want to achieve. We adapt to allergies, diets, and taste preferences.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Get your plan</h3>
+                    <p>Receive a complete weekly menu with delicious recipes. Every meal is macronutrient-balanced for you.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Shop & Cook</h3>
+                    <p>Use our smart grocery list to shop in minutes. Follow simple instructions to cook fresh, tasty meals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">15K+</div>
+                    <p>Happy Users</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <p>Recipes</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <p>Meals Planned</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.7★</div>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">Eating smart has never been easier</h2>
+            <h2 class="section-title">Not just a diet. <br>A lifestyle upgrade.</h2>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>Follow any eating style or create your own</h3>
-                    <p>You can customize popular eating styles like vegan and paleo to match your needs and preferences.</p>
+                    <div class="feature-icon">🥬</div>
+                    <h3>Fresh Ingredients</h3>
+                    <p>Say goodbye to processed food. We prioritize whole, fresh ingredients that make you feel great.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <h3>Reduce food waste</h3>
-                    <p>Planning ahead means less produce going bad in the fridge. Add what you already own to the virtual pantry and our algorithms will use it up with priority.</p>
+                    <div class="feature-icon">⏰</div>
+                    <h3>Save Time</h3>
+                    <p>Stop wondering "what's for dinner". Your plan is ready, and your shopping list is sorted.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <h3>Take the anxiety out of picking what to eat</h3>
-                    <p>Make the important decisions ahead of time and on your own schedule. Then there's nothing to worry about when it's time to eat.</p>
+                    <div class="feature-icon">🎯</div>
+                    <h3>Sustainable Results</h3>
+                    <p>No crash diets. Just consistent, balanced eating that helps you reach and maintain your weight goals.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <h3>Automatic grocery lists</h3>
-                    <p>No more skipping meals because you're missing ingredients. Review your meals for the week and the grocery list automatically updates. Then get it delivered with our Instacart or AmazonFresh integration.</p>
+                    <div class="feature-icon">🛒</div>
+                    <h3>Automated Lists</h3>
+                    <p>Smart grocery lists that sort themselves by aisle. In and out in 15 mins.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3>Leftover Magic</h3>
+                    <p>Our AI plans meals to use up ingredients, saving you money and reducing waste.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Visualize your consistency and health improvements over time.</p>
                 </div>
             </div>
 
             <div class="cta-section">
-                <button class="btn-primary">Create a free account →</button>
+                <a href="onboarding.html"><button class="btn-primary">Create a free account →</button></a>
+            </div>
+
+            <!-- Progress Tracking Showcase -->
+            <div class="progress-showcase">
+                <h3>Included in your plan</h3>
+                <p class="showcase-subtitle">More than just a shopping list.</p>
+                
+                <div class="daily-summary-card">
+                    <div class="summary-header">
+                        <h4>Daily Summary</h4>
+                        <span class="summary-badge">Perfectly Balanced</span>
+                        <span class="summary-grade">A+</span>
+                    </div>
+                    <div class="macro-bars">
+                        <div class="macro-bar-item">
+                            <label>Protein <span>145g / 150g</span></label>
+                            <div class="progress-bar">
+                                <div class="progress-fill protein" style="width: 97%;"></div>
+                            </div>
+                        </div>
+                        <div class="macro-bar-item">
+                            <label>Carbs <span>120g / 200g</span></label>
+                            <div class="progress-bar">
+                                <div class="progress-fill carbs" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="macro-bar-item">
+                            <label>Fats <span>65g / 70g</span></label>
+                            <div class="progress-bar">
+                                <div class="progress-fill fats" style="width: 93%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-tip">
+                        <span class="tip-emoji">✨</span>
+                        <p>Swap dinner for the Salmon Salad to hit your protein goal perfectly!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diet Plans Section -->
+    <section class="diet-plans">
+        <div class="container">
+            <h2 class="section-title">Choose your path</h2>
+            <p class="section-subtitle">Whatever your preference, we have a perfectly balanced plan for you.</p>
+            
+            <div class="diet-cards-grid">
+                <a href="onboarding.html" class="diet-card">
+                    <div class="diet-card-image keto">
+                        <span class="diet-emoji">🥓</span>
+                    </div>
+                    <h3>Keto</h3>
+                    <p>High fat, low carb</p>
+                    <span class="diet-link">View Plan →</span>
+                </a>
+                
+                <a href="onboarding.html" class="diet-card">
+                    <div class="diet-card-image vegan">
+                        <span class="diet-emoji">🌱</span>
+                    </div>
+                    <h3>Vegan</h3>
+                    <p>100% Plant based</p>
+                    <span class="diet-link">View Plan →</span>
+                </a>
+                
+                <a href="onboarding.html" class="diet-card">
+                    <div class="diet-card-image balanced">
+                        <span class="diet-emoji">⚖️</span>
+                    </div>
+                    <h3>Balanced</h3>
+                    <p>Everything in moderation</p>
+                    <span class="diet-link">View Plan →</span>
+                </a>
+                
+                <a href="onboarding.html" class="diet-card">
+                    <div class="diet-card-image paleo">
+                        <span class="diet-emoji">🥩</span>
+                    </div>
+                    <h3>Paleo</h3>
+                    <p>Whole foods only</p>
+                    <span class="diet-link">View Plan →</span>
+                </a>
+            </div>
+            
+            <div class="cta-section">
+                <a href="onboarding.html"><button class="btn-secondary-outline">Explore All Diets</button></a>
             </div>
         </div>
     </section>
@@ -120,7 +319,7 @@
     <section class="ratings">
         <div class="container">
             <h2 class="section-title">Top Rated</h2>
-            <p class="rating-badge">CNN Underscored Best Meal Planning App of 2025</p>
+            <p class="rating-badge">🏆 CNN Underscored Best Meal Planning App of 2025</p>
             
             <div class="ratings-grid">
                 <div class="rating-item">
@@ -136,12 +335,6 @@
                     <p class="rating-text"><strong>4.6</strong></p>
                     <p class="rating-count">Over 9,000 reviews</p>
                 </div>
-            </div>
-
-            <div class="press-mentions">
-                <p>Washington Post</p>
-                <p>The Guardian</p>
-                <p>Healthline</p>
             </div>
         </div>
     </section>
@@ -189,6 +382,238 @@
             <p class="disclaimer">
                 Taastee is not a substitute for professional medical advice. You should consult with a medical professional before making significant changes to your diet.
             </p>
+        </div>
+    </section>
+
+    <!-- Community Love Section -->
+    <section class="community-love">
+        <div class="container">
+            <h2 class="section-title">Community Love</h2>
+            <p class="section-subtitle">Real stories from real people achieving their health goals</p>
+            
+            <div class="love-cards-grid">
+                <div class="love-card">
+                    <div class="stars-rating">★★★★★</div>
+                    <blockquote>
+                        "Finally a meal plan that feels fresh and modern. The recipes are genuinely tasty, I actually look forward to cooking now."
+                    </blockquote>
+                    <div class="love-author">
+                        <div class="author-avatar">S</div>
+                        <div>
+                            <strong>Sarah M.</strong>
+                            <p class="author-achievement">Lost 5kg</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="love-card">
+                    <div class="stars-rating">★★★★★</div>
+                    <blockquote>
+                        "The shopping list feature is a game changer. I spend half the time in the store and save money on impulse buys."
+                    </blockquote>
+                    <div class="love-author">
+                        <div class="author-avatar">D</div>
+                        <div>
+                            <strong>David K.</strong>
+                            <p class="author-achievement">Building Muscle</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="love-card">
+                    <div class="stars-rating">★★★★★</div>
+                    <blockquote>
+                        "I love that I can swap meals I don't like. It learns my taste so quickly. The Vegetarian plan is delicious!"
+                    </blockquote>
+                    <div class="love-author">
+                        <div class="author-avatar">E</div>
+                        <div>
+                            <strong>Emma R.</strong>
+                            <p class="author-achievement">Health Goal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Common Questions</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How to create a weekly meal plan?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Click "Generate Meal Plan" and answer a few questions about your goals, dietary preferences, and restrictions. Our system then generates a personalized weekly meal plan for you—no manual setup needed!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I create a meal plan for weight loss?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Just set your calorie target based on your weight loss goals. The system will calculate your calorie deficit and create a balanced plan that helps you lose weight sustainably—typically 0.5–1 kg per week.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I need to count calories when meal planning?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No! That's the beauty of Taastee. We do all the calorie and macro counting for you. Just follow the plan and enjoy your meals without obsessing over numbers.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can the system adjust my meal plan for dietary restrictions?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Whether you're vegan, gluten-free, lactose intolerant, or have specific allergies, the system creates plans that respect your restrictions while ensuring balanced nutrition.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What if I don't like one of the meals in my plan?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Simply regenerate your meal plan, and the system will suggest alternatives that fit your macros and preferences. You can also exclude specific ingredients for future plans.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I need to be a good cook?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Not at all. Our recipes are designed to be simple, with clear step-by-step instructions. Most meals can be prepared in under 30 minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Taastee Section -->
+    <section class="why-taastee">
+        <div class="container">
+            <h2 class="section-title">Why Taastee?</h2>
+            <p class="section-subtitle">Compare us with DIY meal planning and generic diet apps</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-row comparison-header">
+                    <div class="comparison-feature">Feature</div>
+                    <div class="comparison-col">DIY Planning</div>
+                    <div class="comparison-col">Generic Apps</div>
+                    <div class="comparison-col highlight-col">Taastee</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Personalized Plans</div>
+                    <div class="comparison-col">❌</div>
+                    <div class="comparison-col">⚠️ Limited</div>
+                    <div class="comparison-col highlight-col">✅ Fully Custom</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Auto Grocery Lists</div>
+                    <div class="comparison-col">❌</div>
+                    <div class="comparison-col">✅</div>
+                    <div class="comparison-col highlight-col">✅ Smart Sorting</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Macro Tracking</div>
+                    <div class="comparison-col">❌ Manual</div>
+                    <div class="comparison-col">✅</div>
+                    <div class="comparison-col highlight-col">✅ Automatic</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Leftover Management</div>
+                    <div class="comparison-col">❌</div>
+                    <div class="comparison-col">❌</div>
+                    <div class="comparison-col highlight-col">✅ AI-Powered</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Recipe Variety</div>
+                    <div class="comparison-col">⚠️ Limited</div>
+                    <div class="comparison-col">✅ Good</div>
+                    <div class="comparison-col highlight-col">✅ 1000+</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Time Investment</div>
+                    <div class="comparison-col">❌ Hours</div>
+                    <div class="comparison-col">⚠️ 30 mins</div>
+                    <div class="comparison-col highlight-col">✅ 5 mins</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <span class="cta-emoji">✨</span>
+                <p class="cta-label">Start your transformation</p>
+                <h2>Ready to eat better <br>without the stress?</h2>
+                <p class="cta-description">Join thousands who trust Taastee to simplify their eating and improve their health every day.</p>
+                <button class="btn-cta-large" onclick="window.location.href='onboarding.html'">Get Your Plan</button>
+                <div class="cta-benefits">
+                    <span>✓ No Credit Card Required</span>
+                    <span>✓ Cancel Anytime</span>
+                    <span>✓ Free Grocery List</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Taastee Helps Section -->
+    <section class="how-helps">
+        <div class="container">
+            <h2 class="section-title">How Taastee helps you eat better</h2>
+            
+            <div class="helps-content">
+                <p>Our intelligent system creates personalized meal plans based on your calories, macros, and taste preferences. Unlike generic diet templates, Taastee adapts to your unique needs — whether you're following Keto, Vegan, Paleo, or a balanced diet.</p>
+                
+                <p>Each week, you get a complete menu with breakfast, lunch, dinner, and snacks. The app generates a smart grocery list sorted by aisle, so you spend less time shopping and reduce food waste with precise quantities.</p>
+                
+                <p>For weight loss, muscle gain, or general health — we track your macros and adjust your weekly menu based on your progress. It's like having a personal nutritionist, without the cost.</p>
+                
+                <div class="helps-features">
+                    <div class="helps-feature-item">
+                        <span class="helps-icon">🤖</span>
+                        <strong>Smart Meal Generator</strong>
+                    </div>
+                    <div class="helps-feature-item">
+                        <span class="helps-icon">📊</span>
+                        <strong>Custom Macros & Calorie Tracking</strong>
+                    </div>
+                    <div class="helps-feature-item">
+                        <span class="helps-icon">🛒</span>
+                        <strong>Zero Waste Grocery Lists</strong>
+                    </div>
+                    <div class="helps-feature-item">
+                        <span class="helps-icon">🌟</span>
+                        <strong>Any Diet - Keto, Vegan, & More</strong>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

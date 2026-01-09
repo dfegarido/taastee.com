@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Personalized Meal Plan - Taastee</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+    <!-- Simple Header -->
+    <header class="onboarding-header">
+        <div class="container">
+            <a href="index.html" class="logo">Taastee</a>
+            <div class="progress-indicator">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <span class="progress-text">Step <span id="current-step">1</span> of 7</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Onboarding Container -->
+    <main class="onboarding-main">
+        <div class="onboarding-container">
+            
+            <!-- Step 1: Goal -->
+            <div class="onboarding-step active" id="step-1">
+                <div class="step-content">
+                    <span class="step-label">Step 1 of 7</span>
+                    <h1 class="step-title">What's your main goal?</h1>
+                    <p class="step-subtitle">We'll personalize your meal plan to help you achieve it</p>
+                    
+                    <div class="options-grid">
+                        <button class="option-card" data-value="lose-weight">
+                            <span class="option-icon">🎯</span>
+                            <h3>Lose Weight</h3>
+                            <p>Healthy calorie deficit with balanced nutrition</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="gain-muscle">
+                            <span class="option-icon">💪</span>
+                            <h3>Build Muscle</h3>
+                            <p>High protein meals to support muscle growth</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="maintain">
+                            <span class="option-icon">⚖️</span>
+                            <h3>Maintain Weight</h3>
+                            <p>Balanced meals to keep your current weight</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="eat-healthy">
+                            <span class="option-icon">🥗</span>
+                            <h3>Eat Healthier</h3>
+                            <p>Nutritious whole foods and clean eating</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Diet Type -->
+            <div class="onboarding-step" id="step-2">
+                <div class="step-content">
+                    <span class="step-label">Step 2 of 7</span>
+                    <h1 class="step-title">What's your preferred diet?</h1>
+                    <p class="step-subtitle">Choose one or select "No preference"</p>
+                    
+                    <div class="options-grid">
+                        <button class="option-card" data-value="no-preference">
+                            <span class="option-icon">🍽️</span>
+                            <h3>No Preference</h3>
+                            <p>I eat everything</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="keto">
+                            <span class="option-icon">🥓</span>
+                            <h3>Keto</h3>
+                            <p>High fat, low carb</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="vegan">
+                            <span class="option-icon">🌱</span>
+                            <h3>Vegan</h3>
+                            <p>100% plant-based</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="vegetarian">
+                            <span class="option-icon">🥦</span>
+                            <h3>Vegetarian</h3>
+                            <p>No meat or fish</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="paleo">
+                            <span class="option-icon">🥩</span>
+                            <h3>Paleo</h3>
+                            <p>Whole foods only</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="mediterranean">
+                            <span class="option-icon">🫒</span>
+                            <h3>Mediterranean</h3>
+                            <p>Heart-healthy eating</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Activity Level -->
+            <div class="onboarding-step" id="step-3">
+                <div class="step-content">
+                    <span class="step-label">Step 3 of 7</span>
+                    <h1 class="step-title">How active are you?</h1>
+                    <p class="step-subtitle">This helps us calculate your calorie needs</p>
+                    
+                    <div class="options-list">
+                        <button class="option-card-row" data-value="sedentary">
+                            <div class="option-row-content">
+                                <span class="option-icon">🪑</span>
+                                <div>
+                                    <h3>Sedentary</h3>
+                                    <p>Little to no exercise, desk job</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button class="option-card-row" data-value="light">
+                            <div class="option-row-content">
+                                <span class="option-icon">🚶</span>
+                                <div>
+                                    <h3>Lightly Active</h3>
+                                    <p>Light exercise 1-3 days per week</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button class="option-card-row" data-value="moderate">
+                            <div class="option-row-content">
+                                <span class="option-icon">🏃</span>
+                                <div>
+                                    <h3>Moderately Active</h3>
+                                    <p>Moderate exercise 3-5 days per week</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button class="option-card-row" data-value="very">
+                            <div class="option-row-content">
+                                <span class="option-icon">🏋️</span>
+                                <div>
+                                    <h3>Very Active</h3>
+                                    <p>Hard exercise 6-7 days per week</p>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <button class="option-card-row" data-value="athlete">
+                            <div class="option-row-content">
+                                <span class="option-icon">🏆</span>
+                                <div>
+                                    <h3>Athlete</h3>
+                                    <p>Professional athlete or very intense training</p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Body Stats -->
+            <div class="onboarding-step" id="step-4">
+                <div class="step-content">
+                    <span class="step-label">Step 4 of 7</span>
+                    <h1 class="step-title">Tell us about yourself</h1>
+                    <p class="step-subtitle">This helps us personalize your calorie target</p>
+                    
+                    <div class="form-container">
+                        <div class="form-group-inline">
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="number" id="age" class="form-input" placeholder="25" min="13" max="100" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select id="gender" class="form-input" required>
+                                    <option value="">Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-inline">
+                            <div class="form-group">
+                                <label>Height (cm)</label>
+                                <input type="number" id="height" class="form-input" placeholder="170" min="100" max="250" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Current Weight (kg)</label>
+                                <input type="number" id="weight" class="form-input" placeholder="70" min="30" max="300" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="target-weight-group" style="display: none;">
+                            <label>Target Weight (kg)</label>
+                            <input type="number" id="target-weight" class="form-input" placeholder="65" min="30" max="300">
+                            <p class="form-hint">Optional - helps us track your progress</p>
+                        </div>
+                        
+                        <button class="btn-continue" onclick="validateAndContinue(4)">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Meals Per Day -->
+            <div class="onboarding-step" id="step-5">
+                <div class="step-content">
+                    <span class="step-label">Step 5 of 7</span>
+                    <h1 class="step-title">How many meals per day?</h1>
+                    <p class="step-subtitle">We'll divide your daily calories accordingly</p>
+                    
+                    <div class="options-grid">
+                        <button class="option-card" data-value="2">
+                            <span class="option-icon">🍽️</span>
+                            <h3>2 Meals</h3>
+                            <p>Intermittent fasting friendly</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="3">
+                            <span class="option-icon">🍽️🍽️</span>
+                            <h3>3 Meals</h3>
+                            <p>Most popular choice</p>
+                            <span class="popular-badge">Popular</span>
+                        </button>
+                        
+                        <button class="option-card" data-value="4">
+                            <span class="option-icon">🍽️🍽️🍽️</span>
+                            <h3>4 Meals</h3>
+                            <p>Includes snacks</p>
+                        </button>
+                        
+                        <button class="option-card" data-value="5">
+                            <span class="option-icon">🍽️🍽️🍽️🍽️</span>
+                            <h3>5+ Meals</h3>
+                            <p>Multiple small meals</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Food Preferences -->
+            <div class="onboarding-step" id="step-6">
+                <div class="step-content">
+                    <span class="step-label">Step 6 of 7</span>
+                    <h1 class="step-title">Any foods you want to avoid?</h1>
+                    <p class="step-subtitle">Select all that apply (optional)</p>
+                    
+                    <div class="multi-select-grid">
+                        <button class="multi-option-card" data-value="dairy">
+                            <span class="option-icon">🥛</span>
+                            <h3>Dairy</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="gluten">
+                            <span class="option-icon">🌾</span>
+                            <h3>Gluten</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="nuts">
+                            <span class="option-icon">🥜</span>
+                            <h3>Nuts</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="soy">
+                            <span class="option-icon">🫘</span>
+                            <h3>Soy</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="eggs">
+                            <span class="option-icon">🥚</span>
+                            <h3>Eggs</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="seafood">
+                            <span class="option-icon">🦐</span>
+                            <h3>Seafood</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="pork">
+                            <span class="option-icon">🐷</span>
+                            <h3>Pork</h3>
+                        </button>
+                        
+                        <button class="multi-option-card" data-value="beef">
+                            <span class="option-icon">🐮</span>
+                            <h3>Beef</h3>
+                        </button>
+                    </div>
+                    
+                    <button class="btn-continue" onclick="nextStep(6)">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 7: Email -->
+            <div class="onboarding-step" id="step-7">
+                <div class="step-content">
+                    <span class="step-label">Step 7 of 7</span>
+                    <h1 class="step-title">Get your personalized plan!</h1>
+                    <p class="step-subtitle">Enter your email to receive your meal plan</p>
+                    
+                    <div class="form-container">
+                        <div class="email-benefits">
+                            <div class="benefit-item">
+                                <span class="benefit-icon">✅</span>
+                                <span>Personalized weekly meal plans</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">✅</span>
+                                <span>Smart grocery lists</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">✅</span>
+                                <span>Macro tracking & progress reports</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">✅</span>
+                                <span>1000+ delicious recipes</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Name (optional)</label>
+                            <input type="text" id="name" class="form-input" placeholder="Your name">
+                        </div>
+                        
+                        <button class="btn-generate" onclick="generatePlan()">
+                            <span class="btn-icon">✨</span>
+                            Generate My Meal Plan
+                        </button>
+                        
+                        <p class="privacy-text">
+                            By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+                            No credit card required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="onboarding-step" id="loading-step">
+                <div class="step-content loading-content">
+                    <div class="loading-animation">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <h1 class="step-title">Creating your personalized plan...</h1>
+                    <div class="loading-messages">
+                        <p class="loading-message active">🔍 Analyzing your preferences...</p>
+                        <p class="loading-message">🍽️ Selecting perfect recipes...</p>
+                        <p class="loading-message">📊 Calculating your macros...</p>
+                        <p class="loading-message">🛒 Building your grocery list...</p>
+                        <p class="loading-message">✨ Almost done!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation-buttons">
+        <button class="btn-back" id="back-btn" onclick="previousStep()" style="display: none;">
+            ← Back
+        </button>
+    </div>
+
+    <script src="onboarding.js"></script>
+</body>
+</html>
+

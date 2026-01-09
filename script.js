@@ -224,17 +224,6 @@ function displayMealPlan(mealPlan) {
     mealPlanResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-
 // Form validation
 caloriesInput.addEventListener('input', (e) => {
     const value = parseInt(e.target.value);
@@ -246,6 +235,125 @@ mealsInput.addEventListener('input', (e) => {
     const value = parseInt(e.target.value);
     if (value < 1) e.target.value = 1;
     if (value > 6) e.target.value = 6;
+});
+
+// FAQ Accordion functionality
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    });
+});
+
+// Smooth scroll with offset for fixed navbar
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const offset = 80;
+                const targetPosition = target.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// Add animation on scroll for cards
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Trigger counter animation for stats
+            if (entry.target.classList.contains('stat-item')) {
+                animateCounter(entry.target);
+            }
+        }
+    });
+}, observerOptions);
+
+// Observe feature cards, step cards, and diet cards
+document.querySelectorAll('.feature-card, .step-card, .diet-card, .testimonial-card, .love-card, .stat-item').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    observer.observe(card);
+});
+
+// Animate counter for stats
+function animateCounter(statItem) {
+    const numberElement = statItem.querySelector('.stat-number');
+    if (!numberElement || numberElement.dataset.animated) return;
+    
+    numberElement.dataset.animated = 'true';
+    const text = numberElement.textContent;
+    const hasPlus = text.includes('+');
+    const hasStar = text.includes('★');
+    const numericValue = parseFloat(text.replace(/[^\d.]/g, ''));
+    
+    if (isNaN(numericValue)) return;
+    
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const increment = numericValue / steps;
+    let current = 0;
+    let step = 0;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        step++;
+        
+        if (step >= steps) {
+            current = numericValue;
+            clearInterval(timer);
+        }
+        
+        let displayValue = current >= 1000 ? 
+            (Math.floor(current / 100) / 10) + 'K' : 
+            Math.floor(current);
+        
+        if (hasStar) {
+            displayValue = current.toFixed(1) + '★';
+        } else if (hasPlus) {
+            displayValue += '+';
+        }
+        
+        numberElement.textContent = displayValue;
+    }, duration / steps);
+}
+
+// Add hover effect to comparison table rows
+document.querySelectorAll('.comparison-row').forEach((row, index) => {
+    if (index > 0) { // Skip header row
+        row.addEventListener('mouseenter', function() {
+            this.style.background = 'var(--bg-light)';
+        });
+        row.addEventListener('mouseleave', function() {
+            this.style.background = 'transparent';
+        });
+    }
 });
 
 // Initialize
