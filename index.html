@@ -26,55 +26,55 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="trust-badge">
-                <span class="emoji">🥗</span> Trusted by 15,000+ food lovers
-            </div>
-            <h1 class="hero-title">Eat Fresh. <br><span class="highlight">Live Better.</span></h1>
-            <p class="hero-subtitle">
-                Create your personalized weekly menu that adapts to your taste, schedule, and goals. 
-                Fresh ingredients, simple recipes, and zero food waste.
-            </p>
-            <div class="hero-badges">
-                <div class="badge-item">
-                    <span class="badge-emoji">🔥</span>
-                    <div>
-                        <strong>Calories</strong>
-                        <p>Perfectly Balanced</p>
+            <div class="hero-grid">
+                <!-- Left Column -->
+                <div class="hero-left">
+                    <div class="trust-badge">
+                        <span class="emoji">🤖</span> AI-Powered Nutrition
+                    </div>
+                    <h1 class="hero-title">Eat Fresh. <br><span class="highlight">Live Better.</span></h1>
+                    <p class="hero-subtitle">
+                        Create your personalized weekly menu that adapts to your taste, schedule, and goals. 
+                        Fresh ingredients, simple recipes, and zero food waste.
+                    </p>
+                    <button class="btn-hero-cta" onclick="window.location.href='onboarding.html'">Create Your Plan →</button>
+                    
+                    <div class="trust-users">
+                        <div class="user-avatars">
+                            <div class="avatar">👤</div>
+                            <div class="avatar">👤</div>
+                            <div class="avatar">👤</div>
+                        </div>
+                        <p>Trusted by <strong>24,000+</strong> food lovers</p>
                     </div>
                 </div>
-                <div class="badge-item">
-                    <span class="badge-emoji">🥑</span>
-                    <div>
-                        <strong>Ingredients</strong>
-                        <p>100% Fresh</p>
-                    </div>
-                </div>
-                <div class="badge-item">
-                    <span class="badge-emoji">⏱️</span>
-                    <div>
-                        <strong>Time</strong>
-                        <p>Under 30 mins</p>
+                
+                <!-- Right Column -->
+                <div class="hero-right">
+                    <div class="hero-image-container">
+                        <img src="https://ai-mealplan.com/images/landing.png" alt="Healthy lifestyle" class="hero-image">
+                        
+                        <!-- Floating Badge: Calories -->
+                        <div class="floating-badge badge-calories">
+                            <span class="badge-emoji">🔥</span>
+                            <div class="badge-text">
+                                <small>CALORIES</small>
+                                <strong>Perfectly Balanced</strong>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Badge: Ingredients -->
+                        <div class="floating-badge badge-ingredients">
+                            <span class="badge-emoji">🥑</span>
+                            <div class="badge-text">
+                                <small>INGREDIENTS</small>
+                                <strong>100% Fresh</strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Press Mentions -->
-            <div class="press-section">
-                <p class="press-label">As seen on</p>
-                <div class="press-logos">
-                    <span>CNN</span>
-                    <span>Healthline</span>
-                    <span>Washington Post</span>
-                    <span>The Guardian</span>
-                </div>
-            </div>
-            
-            <!-- Recipe Badge -->
-            <div class="recipe-badge">
-                <span class="recipe-icon">📚</span>
-                <strong>1000+ Premium Recipes</strong>
-            </div>
-
             <!-- Meal Plan Generator -->
             <div class="meal-plan-generator">
                 <h2>Create your meal plan right here in seconds</h2>
@@ -149,6 +149,103 @@
                     <div class="step-number">3</div>
                     <h3>Shop & Cook</h3>
                     <p>Use our smart grocery list to shop in minutes. Follow simple instructions to cook fresh, tasty meals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Than Just Section -->
+    <section class="more-than-just">
+        <div class="container">
+            <div class="more-than-grid">
+                <!-- Left Column -->
+                <div class="more-than-left">
+                    <h2 class="more-than-title">More than just <br><span class="highlight-green">a shopping list.</span></h2>
+                    <p class="more-than-subtitle">We've reimagined how meal planning should feel. No more spreadsheets or confusion—just a simple, beautiful system that does the heavy lifting for you.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-list-item">
+                            <div class="feature-icon-circle">
+                                <span>📋</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Automated Lists</h3>
+                                <p>Smart grocery lists that sort themselves by aisle. In and out in 15 mins.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-list-item">
+                            <div class="feature-icon-circle">
+                                <span>🧪</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Leftover Magic</h3>
+                                <p>Our AI plans meals to use up ingredients, saving you money and reducing waste.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-list-item">
+                            <div class="feature-icon-circle">
+                                <span>📊</span>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Progress Tracking</h3>
+                                <p>Visualize your consistency and health improvements over time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="more-than-right">
+                    <div class="daily-summary-card-large">
+                        <div class="summary-header-large">
+                            <div class="summary-header-top">
+                                <div>
+                                    <p class="summary-label">DAILY SUMMARY</p>
+                                    <h3 class="summary-status">Perfectly Balanced</h3>
+                                </div>
+                                <span class="summary-grade-large">A+</span>
+                            </div>
+                        </div>
+                        
+                        <div class="macro-bars-large">
+                            <div class="macro-bar-item-large">
+                                <div class="macro-bar-header">
+                                    <span class="macro-name">Protein</span>
+                                    <span class="macro-values"><strong>145g</strong> / 180g</span>
+                                </div>
+                                <div class="progress-bar-large">
+                                    <div class="progress-fill-large protein" style="width: 80.5%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="macro-bar-item-large">
+                                <div class="macro-bar-header">
+                                    <span class="macro-name">Carbs</span>
+                                    <span class="macro-values"><strong>120g</strong> / 200g</span>
+                                </div>
+                                <div class="progress-bar-large">
+                                    <div class="progress-fill-large carbs" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="macro-bar-item-large">
+                                <div class="macro-bar-header">
+                                    <span class="macro-name">Fats</span>
+                                    <span class="macro-values"><strong>65g</strong> / 70g</span>
+                                </div>
+                                <div class="progress-bar-large">
+                                    <div class="progress-fill-large fats" style="width: 92.8%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-tip-large">
+                            <span class="tip-emoji">✨</span>
+                            <p>Swap dinner for the <strong>Salmon Salad</strong> to hit your protein goal perfectly!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -273,44 +370,48 @@
             
             <div class="diet-cards-grid">
                 <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image keto">
-                        <span class="diet-emoji">🥓</span>
+                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/keto_plan.webp');">
+                        <div class="diet-card-overlay">
+                            <h3>Keto</h3>
+                            <p>High fat, low carb</p>
+                            <span class="diet-link">VIEW PLAN →</span>
+                        </div>
                     </div>
-                    <h3>Keto</h3>
-                    <p>High fat, low carb</p>
-                    <span class="diet-link">View Plan →</span>
                 </a>
                 
                 <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image vegan">
-                        <span class="diet-emoji">🌱</span>
+                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/vegan.webp');">
+                        <div class="diet-card-overlay">
+                            <h3>Vegan</h3>
+                            <p>100% Plant based</p>
+                            <span class="diet-link">VIEW PLAN →</span>
+                        </div>
                     </div>
-                    <h3>Vegan</h3>
-                    <p>100% Plant based</p>
-                    <span class="diet-link">View Plan →</span>
                 </a>
                 
                 <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image balanced">
-                        <span class="diet-emoji">⚖️</span>
+                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/balanced.webp');">
+                        <div class="diet-card-overlay">
+                            <h3>Balanced</h3>
+                            <p>Everything in moderation</p>
+                            <span class="diet-link">VIEW PLAN →</span>
+                        </div>
                     </div>
-                    <h3>Balanced</h3>
-                    <p>Everything in moderation</p>
-                    <span class="diet-link">View Plan →</span>
                 </a>
                 
                 <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image paleo">
-                        <span class="diet-emoji">🥩</span>
+                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/paleo.webp');">
+                        <div class="diet-card-overlay">
+                            <h3>Paleo</h3>
+                            <p>Whole foods only</p>
+                            <span class="diet-link">VIEW PLAN →</span>
+                        </div>
                     </div>
-                    <h3>Paleo</h3>
-                    <p>Whole foods only</p>
-                    <span class="diet-link">View Plan →</span>
                 </a>
             </div>
             
             <div class="cta-section">
-                <a href="onboarding.html"><button class="btn-secondary-outline">Explore All Diets</button></a>
+                <button class="btn-explore-diets">Explore All Diets</button>
             </div>
         </div>
     </section>
@@ -568,16 +669,17 @@
     <!-- Final CTA Section -->
     <section class="final-cta">
         <div class="container">
-            <div class="cta-content">
-                <span class="cta-emoji">✨</span>
-                <p class="cta-label">Start your transformation</p>
-                <h2>Ready to eat better <br>without the stress?</h2>
-                <p class="cta-description">Join thousands who trust Taastee to simplify their eating and improve their health every day.</p>
-                <button class="btn-cta-large" onclick="window.location.href='onboarding.html'">Get Your Plan</button>
+            <div class="cta-card">
+                <div class="cta-badge">
+                    <span class="badge-icon">✨</span> Start your transformation
+                </div>
+                <h2 class="cta-heading">Ready to eat better <br><span class="cta-heading-italic">without the stress?</span></h2>
+                <p class="cta-description">Join thousands who trust AI Meal Planner to simplify their eating and improve their health every day.</p>
+                <button class="btn-cta-white" onclick="window.location.href='onboarding.html'">Get Your Plan</button>
                 <div class="cta-benefits">
-                    <span>✓ No Credit Card Required</span>
-                    <span>✓ Cancel Anytime</span>
-                    <span>✓ Free Grocery List</span>
+                    <span>✓ NO CREDIT CARD REQUIRED</span>
+                    <span>✓ CANCEL ANYTIME</span>
+                    <span>✓ FREE GROCERY LIST</span>
                 </div>
             </div>
         </div>
@@ -631,58 +733,31 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>Get Started</h4>
-                    <ul>
-                        <li><a href="#">Get our iOS app from the App Store</a></li>
-                        <li><a href="#">Get our Android app on Google Play</a></li>
-                        <li><a href="#">Browse Foods</a></li>
-                        <li><a href="#">Calorie Calculator</a></li>
-                        <li><a href="#">Nutrient Glossary</a></li>
-                    </ul>
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-icon">🥗</div>
+                        <h3>AI Meal Planner</h3>
+                    </div>
+                    <p class="footer-tagline">Making healthy eating effortless, personal, and delicious through the power of AI.</p>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>Resources</h4>
+                    <h4>Product</h4>
                     <ul>
-                        <li><a href="#">Meal Planning Blog</a></li>
-                        <li><a href="#">Gift Codes</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">For Affiliates</a></li>
+                        <li><a href="#how-it-works">How it works</a></li>
+                        <li><a href="#features">Free Tools</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">DMCA</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#terms">Terms of Use</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#cookies">Cookie Policy</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
-                    <h4>Meal Plans</h4>
-                    <ul>
-                        <li><a href="#">1500 Calorie Meal Plan</a></li>
-                        <li><a href="#">1800 Calorie Meal Plan</a></li>
-                        <li><a href="#">2500 Calorie Meal Plan</a></li>
-                        <li><a href="#">3500 Calorie Meal Plan</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Email</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>©2025 Taastee Inc.</p>
             </div>
         </div>
     </footer>
