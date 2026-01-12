@@ -1,312 +1,209 @@
-// Onboarding Flow State
-let currentStep = 1;
-const totalSteps = 7;
-const userData = {
-    goal: '',
-    diet: '',
-    activity: '',
-    age: '',
-    gender: '',
-    height: '',
-    weight: '',
-    targetWeight: '',
-    mealsPerDay: '',
-    avoidFoods: [],
-    email: '',
-    name: ''
-};
+// Onboarding State
+let currentStepIndex = 0;
+const totalSteps = 27;
+const userData = {};
 
 // Initialize
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
     setupEventListeners();
-    
-    // Show target weight field if goal is lose-weight
-    const goal = userData.goal;
-    if (goal === 'lose-weight') {
-        document.getElementById('target-weight-group').style.display = 'block';
-    }
 });
 
 // Setup Event Listeners
 function setupEventListeners() {
-    // Single select option cards (Steps 1, 2, 3, 5)
-    document.querySelectorAll('.option-card, .option-card-row').forEach(card => {
-        card.addEventListener('click', function() {
-            const step = this.closest('.onboarding-step');
-            const stepId = step.id;
+    // Option cards and buttons
+    document.querySelectorAll('.option-card, .option-button').forEach(btn => {
+        btn.addEventListener('click', function() {
             const value = this.dataset.value;
+            const step = this.closest('.step');
+            const stepNumber = step.dataset.step;
             
-            // Remove selected from siblings
-            const siblings = this.parentElement.querySelectorAll('.option-card, .option-card-row');
-            siblings.forEach(sibling => sibling.classList.remove('selected'));
+            // Save data
+            userData[`step${stepNumber}`] = value;
             
-            // Add selected to this card
+            // Highlight selection
+            step.querySelectorAll('.option-card, .option-button').forEach(opt => {
+                opt.classList.remove('selected');
+            });
             this.classList.add('selected');
             
-            // Store data
-            if (stepId === 'step-1') {
-                userData.goal = value;
-                // Show/hide target weight based on goal
-                if (value === 'lose-weight') {
-                    document.getElementById('target-weight-group').style.display = 'block';
-                } else {
-                    document.getElementById('target-weight-group').style.display = 'none';
-                }
-            } else if (stepId === 'step-2') {
-                userData.diet = value;
-            } else if (stepId === 'step-3') {
-                userData.activity = value;
-            } else if (stepId === 'step-5') {
-                userData.mealsPerDay = value;
-            }
-            
-            // Auto advance after a short delay
-            setTimeout(() => {
-                const stepNumber = parseInt(stepId.split('-')[1]);
-                nextStep(stepNumber);
-            }, 300);
+            // Auto advance for single-choice questions
+            setTimeout(() => nextStep(), 300);
         });
     });
-    
-    // Multi-select cards (Step 6)
-    document.querySelectorAll('.multi-option-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const value = this.dataset.value;
-            this.classList.toggle('selected');
+
+    // Measurement toggles
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const group = this.parentElement;
+            group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
             
-            // Update userData
-            const index = userData.avoidFoods.indexOf(value);
-            if (index > -1) {
-                userData.avoidFoods.splice(index, 1);
+            // Toggle input visibility
+            const unit = this.dataset.unit;
+            if (unit === 'imperial' || unit === 'lbs') {
+                document.querySelectorAll('.imperial-input').forEach(el => el.style.display = 'flex');
+                document.querySelectorAll('.metric-input').forEach(el => el.style.display = 'none');
             } else {
-                userData.avoidFoods.push(value);
+                document.querySelectorAll('.imperial-input').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.metric-input').forEach(el => el.style.display = 'flex');
+            }
+            
+            // Update weight unit display
+            if (this.dataset.unit === 'lbs' || this.dataset.unit === 'kg') {
+                const units = document.querySelectorAll('#weightUnit, #targetWeightUnit');
+                units.forEach(unit => unit.textContent = this.dataset.unit);
+            }
+        });
+    });
+
+    // Handle "none" checkbox
+    document.querySelectorAll('input[value="none"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                const checkboxes = this.closest('.checkbox-list').querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(cb => {
+                    if (cb !== this) cb.checked = false;
+                });
+            }
+        });
+    });
+
+    // Handle other checkboxes (uncheck "none" if any other is checked)
+    document.querySelectorAll('.checkbox-list input[type="checkbox"]:not([value="none"])').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                const noneCheckbox = this.closest('.checkbox-list').querySelector('input[value="none"]');
+                if (noneCheckbox) noneCheckbox.checked = false;
             }
         });
     });
 }
 
-// Next Step
-function nextStep(stepNumber) {
-    if (stepNumber < totalSteps) {
-        currentStep = stepNumber + 1;
-        showStep(currentStep);
+// Navigate to next step
+function nextStep() {
+    const currentStep = document.querySelector(`.step[data-step="${currentStepIndex}"]`);
+    
+    // Validate current step
+    if (!validateStep(currentStep)) {
+        return;
+    }
+    
+    // Hide current step
+    currentStep.classList.remove('active');
+    
+    // Show next step
+    currentStepIndex++;
+    const nextStep = document.querySelector(`.step[data-step="${currentStepIndex}"]`);
+    
+    if (nextStep) {
+        nextStep.classList.add('active');
         updateProgress();
+        
+        // Show/hide back button
+        const backBtn = document.getElementById('backBtn');
+        backBtn.style.display = currentStepIndex > 0 ? 'inline-block' : 'none';
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
-// Previous Step
+// Navigate to previous step
 function previousStep() {
-    if (currentStep > 1) {
-        currentStep--;
-        showStep(currentStep);
+    if (currentStepIndex > 0) {
+        // Hide current step
+        document.querySelector(`.step[data-step="${currentStepIndex}"]`).classList.remove('active');
+        
+        // Show previous step
+        currentStepIndex--;
+        const prevStep = document.querySelector(`.step[data-step="${currentStepIndex}"]`);
+        prevStep.classList.add('active');
+        
         updateProgress();
+        
+        // Hide back button on first step
+        if (currentStepIndex === 0) {
+            document.getElementById('backBtn').style.display = 'none';
+        }
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
-// Show Step
-function showStep(stepNumber) {
-    // Hide all steps
-    document.querySelectorAll('.onboarding-step').forEach(step => {
-        step.classList.remove('active');
+// Update progress bar
+function updateProgress() {
+    const progress = ((currentStepIndex + 1) / totalSteps) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+    
+    // Update header step counter
+    const headerStep = document.getElementById('headerStep');
+    const headerTotal = document.getElementById('headerTotal');
+    if (headerStep) headerStep.textContent = currentStepIndex + 1;
+    if (headerTotal) headerTotal.textContent = totalSteps;
+}
+
+// Validate step
+function validateStep(step) {
+    const stepNumber = step.dataset.step;
+    
+    // Check for required inputs
+    const inputs = step.querySelectorAll('input.input-field[type="number"], input.input-field[type="email"]');
+    for (let input of inputs) {
+        if (input.offsetParent !== null && !input.value) { // visible and empty
+            input.focus();
+            input.style.borderColor = '#ff6b35';
+            setTimeout(() => {
+                input.style.borderColor = '';
+            }, 2000);
+            return false;
+        }
+    }
+    
+    // Save input data
+    inputs.forEach(input => {
+        if (input.value) {
+            userData[input.id] = input.value;
+        }
     });
     
-    // Show current step
-    document.getElementById(`step-${stepNumber}`).classList.add('active');
-    
-    // Show/hide back button
-    const backBtn = document.getElementById('back-btn');
-    if (stepNumber > 1 && stepNumber <= totalSteps) {
-        backBtn.style.display = 'block';
-    } else {
-        backBtn.style.display = 'none';
+    // Save checkbox data
+    const checkboxes = step.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkboxes.length > 0) {
+        userData[`step${stepNumber}`] = Array.from(checkboxes).map(cb => cb.value);
     }
     
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return true;
 }
 
-// Update Progress
-function updateProgress() {
-    const progress = (currentStep / totalSteps) * 100;
-    document.getElementById('progress-fill').style.width = `${progress}%`;
-    document.getElementById('current-step').textContent = currentStep;
-}
-
-// Validate and Continue (for form steps)
-function validateAndContinue(stepNumber) {
-    if (stepNumber === 4) {
-        const age = document.getElementById('age').value;
-        const gender = document.getElementById('gender').value;
-        const height = document.getElementById('height').value;
-        const weight = document.getElementById('weight').value;
-        const targetWeight = document.getElementById('target-weight').value;
-        
-        if (!age || !gender || !height || !weight) {
-            alert('Please fill in all required fields');
-            return;
-        }
-        
-        if (age < 13 || age > 100) {
-            alert('Please enter a valid age between 13 and 100');
-            return;
-        }
-        
-        if (height < 100 || height > 250) {
-            alert('Please enter a valid height');
-            return;
-        }
-        
-        if (weight < 30 || weight > 300) {
-            alert('Please enter a valid weight');
-            return;
-        }
-        
-        // Store data
-        userData.age = age;
-        userData.gender = gender;
-        userData.height = height;
-        userData.weight = weight;
-        userData.targetWeight = targetWeight || weight;
-        
-        nextStep(stepNumber);
-    }
-}
-
-// Generate Plan
-function generatePlan() {
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
+// Submit onboarding
+function submitOnboarding() {
+    const email = document.getElementById('email');
     
-    if (!email) {
-        alert('Please enter your email address');
+    if (!email.value || !email.value.includes('@')) {
+        email.focus();
+        email.style.borderColor = '#ff6b35';
         return;
     }
     
-    if (!isValidEmail(email)) {
-        alert('Please enter a valid email address');
-        return;
-    }
+    userData.email = email.value;
     
     // Store data
-    userData.email = email;
-    userData.name = name;
-    
-    // Show loading state
-    showLoadingState();
-    
-    // Simulate plan generation
-    setTimeout(() => {
-        completePlanGeneration();
-    }, 5000);
-}
-
-// Show Loading State
-function showLoadingState() {
-    document.querySelectorAll('.onboarding-step').forEach(step => {
-        step.classList.remove('active');
-    });
-    document.getElementById('loading-step').classList.add('active');
-    document.getElementById('back-btn').style.display = 'none';
-    
-    // Animate loading messages
-    const messages = document.querySelectorAll('.loading-message');
-    messages.forEach((message, index) => {
-        setTimeout(() => {
-            messages.forEach(m => m.classList.remove('active'));
-            message.classList.add('active');
-        }, index * 1000);
-    });
-}
-
-// Complete Plan Generation
-function completePlanGeneration() {
-    // Calculate calories based on user data
-    const calories = calculateCalories();
-    
-    // Store user data in localStorage
     localStorage.setItem('taasteeUserData', JSON.stringify(userData));
-    localStorage.setItem('taasteeCalories', calories);
     
-    // Redirect to main page with meal plan
-    window.location.href = `index.html?generated=true&calories=${calories}`;
+    // Redirect to offer page or dashboard
+    console.log('User Data:', userData);
+    window.location.href = 'offer.html'; // Or wherever you want to send them
 }
 
-// Calculate Calories (simplified formula)
-function calculateCalories() {
-    const weight = parseFloat(userData.weight);
-    const height = parseFloat(userData.height);
-    const age = parseFloat(userData.age);
-    const gender = userData.gender;
-    
-    // Mifflin-St Jeor Equation
-    let bmr;
-    if (gender === 'male') {
-        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-    } else {
-        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+// Add selected state styles
+const style = document.createElement('style');
+style.textContent = `
+    .option-card.selected,
+    .option-button.selected {
+        border-color: #ff6b35 !important;
+        background: #fff5f0 !important;
     }
-    
-    // Activity multiplier
-    const activityMultipliers = {
-        'sedentary': 1.2,
-        'light': 1.375,
-        'moderate': 1.55,
-        'very': 1.725,
-        'athlete': 1.9
-    };
-    
-    const tdee = bmr * (activityMultipliers[userData.activity] || 1.2);
-    
-    // Adjust based on goal
-    let targetCalories = tdee;
-    if (userData.goal === 'lose-weight') {
-        targetCalories = tdee - 500; // 500 calorie deficit
-    } else if (userData.goal === 'gain-muscle') {
-        targetCalories = tdee + 300; // 300 calorie surplus
-    }
-    
-    // Round to nearest 50
-    return Math.round(targetCalories / 50) * 50;
-}
-
-// Email validation
-function isValidEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-
-// Handle browser back button
-window.addEventListener('popstate', function(event) {
-    if (currentStep > 1) {
-        previousStep();
-    } else {
-        window.location.href = 'index.html';
-    }
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        if (currentStep > 1) {
-            previousStep();
-        }
-    }
-});
-
-// Prevent form submission on enter
-document.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter' && event.target.tagName !== 'BUTTON') {
-        event.preventDefault();
-        
-        // Trigger continue button if on form step
-        if (currentStep === 4) {
-            validateAndContinue(4);
-        } else if (currentStep === 7) {
-            generatePlan();
-        }
-    }
-});
-
-console.log('Taastee Onboarding initialized!');
-
+`;
+document.head.appendChild(style);

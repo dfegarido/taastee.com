@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Plan - Taastee</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8db 100%);
+            min-height: 100vh;
+        }
+
+        .offer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .offer-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .offer-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .offer-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Results Summary */
+        .results-summary {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .result-card:hover {
+            border-color: #ff6b35;
+            transform: translateY(-4px);
+        }
+
+        .result-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 0.3rem;
+        }
+
+        .result-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Pricing Cards */
+        .pricing-section {
+            margin-bottom: 3rem;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-toggle {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .toggle-option {
+            padding: 0.8rem 2rem;
+            border: 2px solid #e5e5e5;
+            background: white;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-option.active {
+            background: #ff6b35;
+            color: white;
+            border-color: #ff6b35;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-card.featured {
+            border-color: #ff6b35;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8db 100%);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .plan-billing {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.8rem 0;
+            color: #444;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: #ff6b35;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .btn-select-plan {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-select-plan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .pricing-card.featured .btn-select-plan {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+
+        .guarantee-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .guarantee-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .guarantee-text {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .faq-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .offer-title {
+                font-size: 2rem;
+            }
+
+            .offer-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-summary,
+            .guarantee-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offer-container">
+        <!-- Header -->
+        <div class="offer-header">
+            <div class="offer-badge">🎉 YOUR PLAN IS READY!</div>
+            <h1 class="offer-title">Your Personalized Meal Plan<br>is Waiting!</h1>
+            <p class="offer-subtitle">Based on your answers, we've created a custom plan designed specifically for your goals and lifestyle.</p>
+        </div>
+
+        <!-- Results Summary -->
+        <div class="results-summary">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #1a1a1a;">Your Personalized Results</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">🎯</div>
+                    <div class="result-value" id="dailyCalories">2000</div>
+                    <div class="result-label">Daily Calories</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">🍽️</div>
+                    <div class="result-value" id="mealsPerDay">3</div>
+                    <div class="result-label">Meals Per Day</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">📅</div>
+                    <div class="result-value">7</div>
+                    <div class="result-label">Days Planned</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">🛒</div>
+                    <div class="result-value">1</div>
+                    <div class="result-label">Shopping List</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="pricing-section">
+            <div class="pricing-header">
+                <h2>Choose Your Plan</h2>
+                <p style="font-size: 1.1rem; color: #666;">All plans include full access to personalized meal plans, recipes, and shopping lists</p>
+                <div class="pricing-toggle">
+                    <button class="toggle-option active" onclick="toggleBilling('monthly')">Monthly</button>
+                    <button class="toggle-option" onclick="toggleBilling('yearly')">Yearly <span style="color: #ff6b35; margin-left: 0.5rem;">(Save 40%)</span></button>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Monthly Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">Monthly Plan</div>
+                    <div class="plan-price">$19<span>/mo</span></div>
+                    <div class="plan-billing">Billed monthly</div>
+                    <ul class="plan-features">
+                        <li>Personalized meal plans</li>
+                        <li>1000+ recipes</li>
+                        <li>Weekly shopping lists</li>
+                        <li>Calorie & macro tracking</li>
+                        <li>Recipe customization</li>
+                        <li>Mobile app access</li>
+                    </ul>
+                    <button class="btn-select-plan" onclick="selectPlan('monthly')">Start Monthly Plan</button>
+                </div>
+
+                <!-- Yearly Plan (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">⭐ BEST VALUE</div>
+                    <div class="plan-name">Yearly Plan</div>
+                    <div class="plan-price">$11<span>/mo</span></div>
+                    <div class="plan-billing">$132 billed yearly (Save $96/year)</div>
+                    <ul class="plan-features">
+                        <li>Everything in Monthly, plus:</li>
+                        <li>40% discount</li>
+                        <li>Priority support</li>
+                        <li>Early access to new features</li>
+                        <li>Nutrition coaching tips</li>
+                        <li>Recipe video tutorials</li>
+                    </ul>
+                    <button class="btn-select-plan" onclick="selectPlan('yearly')">Start Yearly Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guarantee Section -->
+        <div class="guarantee-section">
+            <div class="guarantee-icon">🛡️</div>
+            <h3 class="guarantee-title">30-Day Money-Back Guarantee</h3>
+            <p class="guarantee-text">Try Taastee risk-free for 30 days. If you're not completely satisfied with your personalized meal plans, we'll refund your money—no questions asked.</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">When will I get my meal plan?</div>
+                <div class="faq-answer">Instantly! As soon as you subscribe, you'll get immediate access to your personalized meal plan, recipes, and shopping list.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I change my meal plan later?</div>
+                <div class="faq-answer">Absolutely! You can update your preferences, dietary restrictions, and goals at any time, and we'll regenerate your meal plan accordingly.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is this a subscription?</div>
+                <div class="faq-answer">Yes, but you can cancel anytime with no penalties. We believe in giving you complete flexibility.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What if I don't like a recipe?</div>
+                <div class="faq-answer">Simply swap it out! Every meal can be replaced with alternatives that match your preferences and dietary needs.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load user data from localStorage
+        const userData = JSON.parse(localStorage.getItem('taasteeUserData') || '{}');
+        
+        // Display personalized data
+        if (userData.step8) {
+            document.getElementById('mealsPerDay').textContent = userData.step8;
+        }
+        
+        // Calculate estimated calories based on user data (simplified)
+        let estimatedCalories = 2000; // Default
+        if (userData.step1 === 'lose') {
+            estimatedCalories = 1800;
+        } else if (userData.step1 === 'gain') {
+            estimatedCalories = 2400;
+        }
+        document.getElementById('dailyCalories').textContent = estimatedCalories;
+
+        // Billing toggle
+        function toggleBilling(type) {
+            const buttons = document.querySelectorAll('.toggle-option');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update pricing display (simplified)
+            // In production, you'd update all prices based on the selected billing cycle
+        }
+
+        // Plan selection
+        function selectPlan(plan) {
+            console.log('Selected plan:', plan);
+            console.log('User data:', userData);
+            
+            // Store selected plan
+            localStorage.setItem('selectedPlan', plan);
+            
+            // In production, redirect to payment page
+            alert(`Great choice! Redirecting to secure checkout for ${plan} plan...`);
+            
+            // Redirect to payment/checkout page
+            // window.location.href = 'checkout.html?plan=' + plan;
+        }
+    </script>
+</body>
+</html>
+
