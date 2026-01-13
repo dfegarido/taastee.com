@@ -2782,18 +2782,16 @@ h1, h2, h3, h4, h5, h6 {
 
     .nav-links {
         width: 100%;
-        justify-content: center;
-        gap: 0.8rem;
-        flex-wrap: wrap;
+        max-width: 100%;
     }
 
     .nav-links a:not(.btn-nav-primary) {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .btn-nav-primary {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
+        padding: 0.8rem 1.6rem;
+        font-size: 1rem;
     }
 
     .hero {
