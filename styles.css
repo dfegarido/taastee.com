@@ -40,6 +40,8 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--white);
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2300,20 +2302,148 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Responsive Design */
+
+/* Tablet and Small Laptops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .hero-grid {
+        gap: 3rem;
+    }
+
+    .features-two-column {
+        gap: 3rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .diet-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Privacy & Terms Pages */
+    .privacy-container,
+    .terms-container {
+        padding: 3rem 1.5rem;
+    }
+
+    .privacy-content,
+    .terms-content {
+        padding: 2rem;
+    }
+
+    .privacy-title,
+    .terms-title {
+        font-size: 2.5rem;
+    }
+
+    .privacy-section h2,
+    .terms-section h2 {
+        font-size: 1.6rem;
+    }
+
+    /* Plan Pages */
+    .plan-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .plan-title {
+        font-size: 2.5rem;
+    }
+
+    .plan-days {
+        padding: 0 1.5rem;
+    }
+
+    .meal-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Tablets */
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .navbar .container {
+        position: relative;
+    }
+
     .nav-links {
-        flex-wrap: wrap;
-        gap: 1.2rem;
-        justify-content: flex-end;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        padding: 80px 2rem 2rem;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        gap: 0;
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
     }
 
     .nav-links a:not(.btn-nav-primary) {
-        font-size: 0.85rem;
+        font-size: 1rem;
     }
 
     .btn-nav-primary {
-        padding: 0.6rem 1.4rem;
-        font-size: 0.9rem;
+        margin-top: 1rem;
+        padding: 0.8rem 1.6rem;
+        font-size: 1rem;
+        text-align: center;
+        border: none;
     }
 
     .hero {
@@ -2346,6 +2476,16 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.05rem;
     }
 
+    /* Hero adjustments for tablet */
+    .hero-image-container {
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .hero-right {
+        margin: 0 auto;
+    }
+
     .floating-badge {
         padding: 0.8rem 1.2rem;
     }
@@ -2363,13 +2503,13 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .badge-calories {
-        top: 10%;
-        right: 5%;
+        top: 8%;
+        right: 2%;
     }
 
     .badge-ingredients {
-        bottom: 15%;
-        left: 5%;
+        bottom: 12%;
+        left: 2%;
     }
 
     .hero-badges {
@@ -2538,6 +2678,83 @@ h1, h2, h3, h4, h5, h6 {
     .footer-tagline {
         max-width: 100%;
     }
+
+    /* Privacy & Terms Pages - Tablet */
+    .privacy-container,
+    .terms-container {
+        padding: 2.5rem 1rem;
+    }
+
+    .privacy-content,
+    .terms-content {
+        padding: 1.5rem;
+    }
+
+    .privacy-title,
+    .terms-title {
+        font-size: 2rem;
+    }
+
+    .privacy-section h2,
+    .terms-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .privacy-section h3,
+    .terms-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .privacy-section p,
+    .terms-section p,
+    .privacy-section li,
+    .terms-section li {
+        font-size: 0.95rem;
+    }
+
+    .privacy-table,
+    .important-box {
+        padding: 1rem;
+    }
+
+    /* Plan Pages - Tablet */
+    .plan-hero {
+        padding: 2.5rem 1rem;
+    }
+
+    .plan-title {
+        font-size: 2rem;
+    }
+
+    .plan-subtitle {
+        font-size: 1rem;
+    }
+
+    .plan-days {
+        padding: 0 1rem;
+    }
+
+    .day-card {
+        padding: 1.5rem;
+    }
+
+    .meal-card {
+        padding: 1.2rem;
+    }
+
+    .meal-icon-container {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+
+    .meal-icon {
+        font-size: 1.5rem;
+    }
+
+    .plan-cta-section {
+        padding: 3rem 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2546,8 +2763,9 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .navbar .container {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .nav-brand {
@@ -2555,7 +2773,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .nav-logo {
-        height: 36px;
+        height: 50px;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
     }
 
     .nav-links {
@@ -2591,17 +2813,30 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1rem;
     }
 
+    .hero-left {
+        text-align: center;
+    }
+
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        text-align: center;
     }
 
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .trust-badge {
+        margin: 0 auto;
     }
 
     .btn-hero-cta {
-        padding: 0.9rem 1.5rem;
-        font-size: 1rem;
+        padding: 1.1rem 2rem;
+        font-size: 1.05rem;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px;
     }
 
     .trust-users {
@@ -2620,6 +2855,24 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.85rem;
     }
 
+    /* Hero Image Container - Mobile */
+    .hero-image-container {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .hero-right {
+        position: relative;
+        padding: 1rem 1rem 1rem 1rem;
+        background: linear-gradient(135deg, rgba(190, 222, 215, 0.3) 0%, rgba(210, 232, 227, 0.3) 100%);
+        border-radius: 24px;
+        margin-right: -2rem;
+        display: flex;
+        align-items: center;
+        min-height: 600px;
+        margin: 0 auto;
+    }
+
     .floating-badge {
         padding: 0.6rem 1rem;
     }
@@ -2634,6 +2887,17 @@ h1, h2, h3, h4, h5, h6 {
 
     .floating-badge .badge-text strong {
         font-size: 0.75rem;
+    }
+
+    /* Better badge positioning on mobile */
+    .badge-calories {
+        top: 18%;
+        right: 0;
+    }
+
+    .badge-ingredients {
+        bottom: 20%;
+        left: 0;
     }
 
     .badge-item {
@@ -2977,6 +3241,199 @@ h1, h2, h3, h4, h5, h6 {
     .macros-display {
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    /* Privacy & Terms Pages - Mobile */
+    .privacy-container,
+    .terms-container {
+        padding: 2rem 1rem;
+    }
+
+    .privacy-header,
+    .terms-header {
+        margin-bottom: 2rem;
+    }
+
+    .privacy-title,
+    .terms-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .privacy-date,
+    .terms-date {
+        font-size: 0.9rem;
+    }
+
+    .privacy-content,
+    .terms-content {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+
+    .privacy-section,
+    .terms-section {
+        margin-bottom: 2rem;
+    }
+
+    .privacy-section h2,
+    .terms-section h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .privacy-section h3,
+    .terms-section h3 {
+        font-size: 1.05rem;
+        margin-top: 1.2rem;
+    }
+
+    .privacy-section p,
+    .terms-section p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .privacy-section ul,
+    .privacy-section ol,
+    .terms-section ul,
+    .terms-section ol {
+        font-size: 0.9rem;
+        padding-left: 1.5rem;
+    }
+
+    .privacy-table,
+    .important-box,
+    .disclaimer-box {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .privacy-overview,
+    .terms-overview {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Plan Pages - Mobile */
+    .plan-hero {
+        padding: 2rem 1rem;
+    }
+
+    .plan-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .plan-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .plan-days {
+        padding: 0;
+    }
+
+    .day-card {
+        padding: 1.25rem;
+        margin: 0 1rem 1.5rem;
+    }
+
+    .day-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .day-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.9rem;
+    }
+
+    .day-intro {
+        font-size: 0.9rem;
+    }
+
+    .macros-display {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .macro-badge {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .tips-list {
+        padding-left: 1.2rem;
+    }
+
+    .tips-list li {
+        font-size: 0.85rem;
+    }
+
+    .meal-card {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .meal-icon-container {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+    }
+
+    .meal-icon {
+        font-size: 1.3rem;
+    }
+
+    .meal-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .meal-desc {
+        font-size: 0.85rem;
+    }
+
+    .meal-benefits {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+    }
+
+    .plan-disclaimer {
+        font-size: 0.75rem;
+        padding: 1rem;
+        margin: 1.5rem 1rem;
+    }
+
+    .plan-cta-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .plan-cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Improve touch targets for mobile */
+    .btn-nav-primary,
+    .btn-hero-cta,
+    .btn-cta-white,
+    .btn-explore-diets,
+    .plan-cta-button {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Better readability */
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* Smooth scroll for mobile */
+    html {
+        scroll-behavior: smooth;
     }
 }
 
