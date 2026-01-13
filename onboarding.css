@@ -3,7 +3,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #fff5f0 0%, #ffe8db 100%);
+    background: linear-gradient(135deg, #f0fdf7 0%, #e8faf2 100%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Header */
@@ -33,7 +34,7 @@
 }
 
 .onboarding-logo-img {
-    height: 45px;
+    height: 65px;
     width: auto;
     display: block;
 }
@@ -68,7 +69,7 @@
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+    background: linear-gradient(90deg, #2d6a5c 0%, #3d8a7a 100%);
     border-radius: 10px;
     transition: width 0.3s ease;
     width: 3.7%; /* 1 of 27 steps */
@@ -151,9 +152,9 @@
 }
 
 .option-card:hover {
-    border-color: #ff6b35;
+    border-color: #2d6a5c;
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 8px 24px rgba(45, 106, 92, 0.2);
 }
 
 .option-icon {
@@ -163,7 +164,7 @@
 .option-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #ff6b35;
+    color: #2d6a5c;
 }
 
 .option-text,
@@ -198,8 +199,8 @@
 }
 
 .option-button:hover {
-    border-color: #ff6b35;
-    background: #fff5f0;
+    border-color: #2d6a5c;
+    background: #f0fdf7;
     transform: translateX(8px);
 }
 
@@ -247,8 +248,8 @@
 
 .input-field:focus {
     outline: none;
-    border-color: #ff6b35;
-    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+    border-color: #2d6a5c;
+    box-shadow: 0 0 0 4px rgba(45, 106, 92, 0.1);
 }
 
 .input-unit {
@@ -280,9 +281,9 @@
 }
 
 .toggle-btn.active {
-    background: #ff6b35;
+    background: #2d6a5c;
     color: white;
-    border-color: #ff6b35;
+    border-color: #2d6a5c;
 }
 
 /* Checkbox List */
@@ -318,8 +319,8 @@
 }
 
 .checkbox-option input:checked + .checkbox-label {
-    border-color: #ff6b35;
-    background: #fff5f0;
+    border-color: #2d6a5c;
+    background: #f0fdf7;
 }
 
 .checkbox-emoji {
@@ -328,7 +329,7 @@
 
 /* Buttons */
 .btn-continue {
-    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    background: linear-gradient(135deg, #2d6a5c 0%, #3d8a7a 100%);
     color: white;
     border: none;
     padding: 1.2rem 3rem;
@@ -341,12 +342,12 @@
     max-width: 400px;
     margin: 0 auto;
     display: block;
-    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 4px 16px rgba(45, 106, 92, 0.3);
 }
 
 .btn-continue:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 6px 20px rgba(45, 106, 92, 0.4);
 }
 
 .btn-final {
@@ -379,8 +380,8 @@
 }
 
 .btn-back:hover {
-    border-color: #ff6b35;
-    color: #ff6b35;
+    border-color: #2d6a5c;
+    color: #2d6a5c;
 }
 
 /* Footer */
@@ -398,7 +399,100 @@
 }
 
 .footer-home-link:hover {
-    color: #ff6b35;
+    color: #2d6a5c;
+}
+
+/* Disclaimer Box */
+.disclaimer-box {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+.disclaimer-text {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+}
+
+.disclaimer-text:last-child {
+    margin-bottom: 0;
+}
+
+.disclaimer-text strong {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.disclaimer-link {
+    color: #2d6a5c;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.disclaimer-link:hover {
+    color: #3d8a7a;
+}
+
+/* Disclaimer Checkbox */
+.disclaimer-checkbox-container {
+    max-width: 500px;
+    margin: 1.5rem auto;
+}
+
+.disclaimer-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    cursor: pointer;
+}
+
+.disclaimer-checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #2d6a5c;
+}
+
+.disclaimer-checkbox-text {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Confirmation Screen */
+.confirmation-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confirmation-message {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 /* Responsive */
@@ -408,7 +502,7 @@
     }
 
     .onboarding-logo-img {
-        height: 36px;
+        height: 50px;
     }
 
     .header-step {

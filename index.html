@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taastee - Put your diet on autopilot</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Preload diet card images for better performance -->
+    <link rel="preload" as="image" href="images/keto.webp">
+    <link rel="preload" as="image" href="images/vegan.webp">
+    <link rel="preload" as="image" href="images/tim-chow-pa_McjjynOA-unsplash.jpg">
+    <link rel="preload" as="image" href="images/paleo.webp">
 </head>
 <body>
     <!-- Navigation -->
@@ -17,8 +22,7 @@
                 <a href="#features">Features</a>
                 <a href="#diet-plans">Diets</a>
                 <a href="#how-it-works">How it Works</a>
-                <a href="#pricing">Pricing</a>
-                <a href="onboarding.html" class="btn-nav-primary">Get Started</a>
+                <a href="onboarding.html" class="btn-nav-primary">Get started for free →</a>
             </div>
         </div>
     </nav>
@@ -32,18 +36,17 @@
                     <div class="trust-badge">
                         <span class="emoji">🤖</span> AI-Powered Nutrition
                     </div>
-                    <h1 class="hero-title">Eat Fresh. <br><span class="highlight">Live Better.</span></h1>
+                    <h1 class="hero-title">Your Meal Plan Is <br><span class="highlight">On the Way.</span></h1>
                     <p class="hero-subtitle">
-                        Create your personalized weekly menu that adapts to your taste, schedule, and goals. 
-                        Fresh ingredients, simple recipes, and zero food waste.
+                        Check your inbox — your personalized meal plan will be delivered by email, usually once a week or more. We may also send helpful offers we think you'll like, and you can unsubscribe anytime. Learn more in our <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>.
                     </p>
-                    <button class="btn-hero-cta" onclick="window.location.href='onboarding.html'">Create Your Plan →</button>
+                    <button class="btn-hero-cta" onclick="window.location.href='onboarding.html'">Get started for free →</button>
                     
                     <div class="trust-users">
                         <div class="user-avatars">
-                            <div class="avatar">👤</div>
-                            <div class="avatar">👤</div>
-                            <div class="avatar">👤</div>
+                            <div class="avatar"><img src="images/alex-suprun-mynsNaNwVDc-unsplash.jpg" alt="User avatar"></div>
+                            <div class="avatar"><img src="images/ian-dooley-d1UPkiFd04A-unsplash.jpg" alt="User avatar"></div>
+                            <div class="avatar"><img src="images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg" alt="User avatar"></div>
                         </div>
                         <p>Trusted by <strong>24,000+</strong> food lovers</p>
                     </div>
@@ -52,76 +55,40 @@
                 <!-- Right Column -->
                 <div class="hero-right">
                     <div class="hero-image-container">
-                        <img src="https://ai-mealplan.com/images/landing.png" alt="Healthy lifestyle" class="hero-image">
-                        
-                        <!-- Floating Badge: Calories -->
-                        <div class="floating-badge badge-calories">
-                            <span class="badge-emoji">🔥</span>
-                            <div class="badge-text">
-                                <small>CALORIES</small>
-                                <strong>Perfectly Balanced</strong>
-                            </div>
+                        <img src="images/tim-chow-pa_McjjynOA-unsplash.jpg" alt="Healthy lifestyle" class="hero-image">
+                    </div>
+                    
+                    <!-- Floating Badge: Calories -->
+                    <div class="floating-badge badge-calories">
+                        <span class="badge-emoji">🔥</span>
+                        <div class="badge-text">
+                            <small>CALORIES</small>
+                            <strong>Perfectly Balanced</strong>
                         </div>
-                        
-                        <!-- Floating Badge: Ingredients -->
-                        <div class="floating-badge badge-ingredients">
-                            <span class="badge-emoji">🥑</span>
-                            <div class="badge-text">
-                                <small>INGREDIENTS</small>
-                                <strong>100% Fresh</strong>
-                            </div>
+                    </div>
+                    
+                    <!-- Floating Badge: Ingredients -->
+                    <div class="floating-badge badge-ingredients">
+                        <span class="badge-emoji">🥑</span>
+                        <div class="badge-text">
+                            <small>INGREDIENTS</small>
+                            <strong>100% Fresh</strong>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Meal Plan Generator -->
-            <div class="meal-plan-generator">
-                <h2>Create your meal plan right here in seconds</h2>
-                
-                <div class="generator-form">
-                    <div class="form-group">
-                        <label>Preferred Diet</label>
-                        <select id="diet-select" class="form-control">
-                            <option value="anything">Anything</option>
-                            <option value="keto">Keto</option>
-                            <option value="mediterranean">Mediterranean</option>
-                            <option value="paleo">Paleo</option>
-                            <option value="vegan">Vegan</option>
-                            <option value="vegetarian">Vegetarian</option>
-                        </select>
-                    </div>
+        </div>
+    </section>
 
-                    <div class="form-group">
-                        <label>I want to eat <input type="number" id="calories-input" class="calories-input" value="2000" min="1000" max="5000"> calories</label>
-                        <a href="#" class="link-text">Not sure? Try our Calorie Calculator</a>
-                    </div>
-
-                    <div class="form-group">
-                        <label>in <input type="number" id="meals-input" class="meals-input" value="3" min="1" max="6"> meals</label>
-                    </div>
-
-                    <div class="macros-group">
-                        <div class="macro-item">
-                            <label>At least <strong id="carbs-display">90g</strong> Carbs</label>
-                            <input type="range" id="carbs-slider" class="macro-slider" min="0" max="300" value="90">
-                        </div>
-                        <div class="macro-item">
-                            <label>At least <strong id="fat-display">40g</strong> Fat</label>
-                            <input type="range" id="fat-slider" class="macro-slider" min="0" max="200" value="40">
-                        </div>
-                        <div class="macro-item">
-                            <label>At least <strong id="protein-display">90g</strong> Protein</label>
-                            <input type="range" id="protein-slider" class="macro-slider" min="0" max="300" value="90">
-                        </div>
-                    </div>
-
-                    <p class="account-prompt">Want to set specific macro targets? <a href="onboarding.html">Create a free account!</a></p>
-
-                    <button id="generate-btn" class="btn-primary btn-large" onclick="window.location.href='onboarding.html'">Generate Meal Plan</button>
-                </div>
-
-                <div id="meal-plan-result" class="meal-plan-result hidden"></div>
+    <!-- As Seen On Section -->
+    <section class="as-seen-on">
+        <div class="container">
+            <p class="as-seen-label">AS SEEN ON</p>
+            <div class="logos-grid">
+                <span class="logo-text vogue">VOGUE</span>
+                <span class="logo-text healthline">Healthline</span>
+                <span class="logo-text mens-health">Men'sHealth</span>
+                <span class="logo-text insider">INSIDER</span>
             </div>
         </div>
     </section>
@@ -135,117 +102,20 @@
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">1</div>
-                    <h3>Set your goals</h3>
-                    <p>Tell us what you like to eat and what you want to achieve. We adapt to allergies, diets, and taste preferences.</p>
+                    <h3>Sign up for free</h3>
+                    <p>Create your free account in seconds. No credit card required. Tell us your dietary preferences and goals.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">2</div>
-                    <h3>Get your plan</h3>
-                    <p>Receive a complete weekly menu with delicious recipes. Every meal is macronutrient-balanced for you.</p>
+                    <h3>Get your free plan</h3>
+                    <p>Access your personalized meal plan instantly on our website. Download recipes and shopping lists anytime.</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <h3>Shop & Cook</h3>
-                    <p>Use our smart grocery list to shop in minutes. Follow simple instructions to cook fresh, tasty meals.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- More Than Just Section -->
-    <section class="more-than-just">
-        <div class="container">
-            <div class="more-than-grid">
-                <!-- Left Column -->
-                <div class="more-than-left">
-                    <h2 class="more-than-title">More than just <br><span class="highlight-green">a shopping list.</span></h2>
-                    <p class="more-than-subtitle">We've reimagined how meal planning should feel. No more spreadsheets or confusion—just a simple, beautiful system that does the heavy lifting for you.</p>
-                    
-                    <div class="feature-list">
-                        <div class="feature-list-item">
-                            <div class="feature-icon-circle">
-                                <span>📋</span>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Automated Lists</h3>
-                                <p>Smart grocery lists that sort themselves by aisle. In and out in 15 mins.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-list-item">
-                            <div class="feature-icon-circle">
-                                <span>🧪</span>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Leftover Magic</h3>
-                                <p>Our AI plans meals to use up ingredients, saving you money and reducing waste.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-list-item">
-                            <div class="feature-icon-circle">
-                                <span>📊</span>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Progress Tracking</h3>
-                                <p>Visualize your consistency and health improvements over time.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Column -->
-                <div class="more-than-right">
-                    <div class="daily-summary-card-large">
-                        <div class="summary-header-large">
-                            <div class="summary-header-top">
-                                <div>
-                                    <p class="summary-label">DAILY SUMMARY</p>
-                                    <h3 class="summary-status">Perfectly Balanced</h3>
-                                </div>
-                                <span class="summary-grade-large">A+</span>
-                            </div>
-                        </div>
-                        
-                        <div class="macro-bars-large">
-                            <div class="macro-bar-item-large">
-                                <div class="macro-bar-header">
-                                    <span class="macro-name">Protein</span>
-                                    <span class="macro-values"><strong>145g</strong> / 180g</span>
-                                </div>
-                                <div class="progress-bar-large">
-                                    <div class="progress-fill-large protein" style="width: 80.5%;"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="macro-bar-item-large">
-                                <div class="macro-bar-header">
-                                    <span class="macro-name">Carbs</span>
-                                    <span class="macro-values"><strong>120g</strong> / 200g</span>
-                                </div>
-                                <div class="progress-bar-large">
-                                    <div class="progress-fill-large carbs" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="macro-bar-item-large">
-                                <div class="macro-bar-header">
-                                    <span class="macro-name">Fats</span>
-                                    <span class="macro-values"><strong>65g</strong> / 70g</span>
-                                </div>
-                                <div class="progress-bar-large">
-                                    <div class="progress-fill-large fats" style="width: 92.8%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="summary-tip-large">
-                            <span class="tip-emoji">✨</span>
-                            <p>Swap dinner for the <strong>Salmon Salad</strong> to hit your protein goal perfectly!</p>
-                        </div>
-                    </div>
+                    <p>Use our free website tools to plan your meals and enjoy healthy eating without any cost.</p>
                 </div>
             </div>
         </div>
@@ -278,86 +148,65 @@
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">Not just a diet. <br>A lifestyle upgrade.</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🥬</div>
-                    <h3>Fresh Ingredients</h3>
-                    <p>Say goodbye to processed food. We prioritize whole, fresh ingredients that make you feel great.</p>
+            <div class="features-two-column">
+                <!-- Left Column - Images -->
+                <div class="features-images">
+                    <div class="feature-image-grid">
+                        <img src="images/mohanad-karawanchy-PlHLf3PJuiI-unsplash.webp" alt="Delicious meal" class="feature-img feature-img-1">
+                        <img src="images/mohanad-karawanchy-3l-ZU7q5zoM-unsplash.webp" alt="Healthy food" class="feature-img feature-img-2">
+                    </div>
+                    <div class="recipes-badge">
+                        <h3>100%</h3>
+                        <p>FREE</p>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Save Time</h3>
-                    <p>Stop wondering "what's for dinner". Your plan is ready, and your shopping list is sorted.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Sustainable Results</h3>
-                    <p>No crash diets. Just consistent, balanced eating that helps you reach and maintain your weight goals.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🛒</div>
-                    <h3>Automated Lists</h3>
-                    <p>Smart grocery lists that sort themselves by aisle. In and out in 15 mins.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">♻️</div>
-                    <h3>Leftover Magic</h3>
-                    <p>Our AI plans meals to use up ingredients, saving you money and reducing waste.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Progress Tracking</h3>
-                    <p>Visualize your consistency and health improvements over time.</p>
+                <!-- Right Column - Features -->
+                <div class="features-content">
+                    <h2 class="features-title">Not just a diet.<br>A lifestyle upgrade.</h2>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-checkmark">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Fresh Ingredients</h3>
+                                <p>Say goodbye to processed food. We prioritize whole, fresh ingredients that make you feel great.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-checkmark">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Save Time</h3>
+                                <p>Stop wondering "what's for dinner". Your plan is ready, and your shopping list is sorted.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-checkmark">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Sustainable Results</h3>
+                                <p>No crash diets. Just consistent, balanced eating that helps you reach and maintain your weight goals.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="cta-section">
-                <a href="onboarding.html"><button class="btn-primary">Create a free account →</button></a>
-            </div>
-
-            <!-- Progress Tracking Showcase -->
-            <div class="progress-showcase">
-                <h3>Included in your plan</h3>
-                <p class="showcase-subtitle">More than just a shopping list.</p>
-                
-                <div class="daily-summary-card">
-                    <div class="summary-header">
-                        <h4>Daily Summary</h4>
-                        <span class="summary-badge">Perfectly Balanced</span>
-                        <span class="summary-grade">A+</span>
-                    </div>
-                    <div class="macro-bars">
-                        <div class="macro-bar-item">
-                            <label>Protein <span>145g / 150g</span></label>
-                            <div class="progress-bar">
-                                <div class="progress-fill protein" style="width: 97%;"></div>
-                            </div>
-                        </div>
-                        <div class="macro-bar-item">
-                            <label>Carbs <span>120g / 200g</span></label>
-                            <div class="progress-bar">
-                                <div class="progress-fill carbs" style="width: 60%;"></div>
-                            </div>
-                        </div>
-                        <div class="macro-bar-item">
-                            <label>Fats <span>65g / 70g</span></label>
-                            <div class="progress-bar">
-                                <div class="progress-fill fats" style="width: 93%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="summary-tip">
-                        <span class="tip-emoji">✨</span>
-                        <p>Swap dinner for the Salmon Salad to hit your protein goal perfectly!</p>
-                    </div>
-                </div>
+                <a href="onboarding.html"><button class="btn-primary">Get started for free →</button></a>
             </div>
         </div>
     </section>
@@ -369,8 +218,8 @@
             <p class="section-subtitle">Whatever your preference, we have a perfectly balanced plan for you.</p>
             
             <div class="diet-cards-grid">
-                <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/keto_plan.webp');">
+                <a href="keto-plan.html" class="diet-card">
+                    <div class="diet-card-image" style="background-image: url('images/keto.webp');">
                         <div class="diet-card-overlay">
                             <h3>Keto</h3>
                             <p>High fat, low carb</p>
@@ -379,8 +228,8 @@
                     </div>
                 </a>
                 
-                <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/vegan.webp');">
+                <a href="vegan-plan.html" class="diet-card">
+                    <div class="diet-card-image" style="background-image: url('images/vegan.webp');">
                         <div class="diet-card-overlay">
                             <h3>Vegan</h3>
                             <p>100% Plant based</p>
@@ -389,8 +238,8 @@
                     </div>
                 </a>
                 
-                <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/balanced.webp');">
+                <a href="balanced-plan.html" class="diet-card">
+                    <div class="diet-card-image" style="background-image: url('images/tim-chow-pa_McjjynOA-unsplash.jpg');">
                         <div class="diet-card-overlay">
                             <h3>Balanced</h3>
                             <p>Everything in moderation</p>
@@ -399,8 +248,8 @@
                     </div>
                 </a>
                 
-                <a href="onboarding.html" class="diet-card">
-                    <div class="diet-card-image" style="background-image: url('https://ai-mealplan.com/images/paleo.webp');">
+                <a href="paleo-plan.html" class="diet-card">
+                    <div class="diet-card-image" style="background-image: url('images/paleo.webp');">
                         <div class="diet-card-overlay">
                             <h3>Paleo</h3>
                             <p>Whole foods only</p>
@@ -411,129 +260,7 @@
             </div>
             
             <div class="cta-section">
-                <button class="btn-explore-diets">Explore All Diets</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ratings Section -->
-    <section class="ratings">
-        <div class="container">
-            <h2 class="section-title">Top Rated</h2>
-            <p class="rating-badge">🏆 CNN Underscored Best Meal Planning App of 2025</p>
-            
-            <div class="ratings-grid">
-                <div class="rating-item">
-                    <p>Get our iOS app from the App Store</p>
-                    <div class="stars">★★★★★</div>
-                    <p class="rating-text"><strong>4.7</strong></p>
-                    <p class="rating-count">Over 21,000 reviews</p>
-                </div>
-                
-                <div class="rating-item">
-                    <p>Get our Android app on Google Play</p>
-                    <div class="stars">★★★★★</div>
-                    <p class="rating-text"><strong>4.6</strong></p>
-                    <p class="rating-count">Over 9,000 reviews</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Users Say</h2>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <blockquote>
-                        "Taastee not only helps me hit my macros, but also makes sure I'm not eating the same bland thing every day. I've lost 35 lbs over the past year, and with Taastee, I'm eating and performing better than ever."
-                    </blockquote>
-                    <cite>Sam Konowich @samkonthemankon</cite>
-                </div>
-                
-                <div class="testimonial-card">
-                    <blockquote>
-                        "I found out about Taastee and lost 32 lbs in 6 months! Now I'm a fit over 50 female in amazing condition, and this site is what I refer to several times a day to ensure I eat properly and manage my macros."
-                    </blockquote>
-                    <cite>Meg M., awesome Taastee user</cite>
-                </div>
-                
-                <div class="testimonial-card">
-                    <blockquote>
-                        "After being diagnosed with sleep apnea and high blood pressure, I picked up this app and followed the nutrition plan religiously. Since then I've lost over 40lbs. I still have 20lbs or so to go before I get to where I really want to be, but I'm thankful for the life this all has helped me achieve."
-                    </blockquote>
-                    <cite>Sam A., awesome Taastee user</cite>
-                </div>
-                
-                <div class="testimonial-card">
-                    <blockquote>
-                        "I started tracking my weight in April when I was 184lbs. In May I signed up for Taastee and immediately appreciated being able to just cook the menu and not worry about what to have for dinner. By November I was down to 155lbs and I still use Taastee today!"
-                    </blockquote>
-                    <cite>Ben Kutil, Product designer</cite>
-                </div>
-            </div>
-
-            <p class="disclaimer">
-                <em>Disclaimer:</em> These are real testimonials, but we're required to tell you that results aren't guaranteed. 
-                Taastee is a tool for planning your meals, and your success will depend on adhering to your planned meals and nutrition goals. 
-                Only you can make yourself improve your diet, but we'll be here to help.
-            </p>
-            <p class="disclaimer">
-                Taastee is not a substitute for professional medical advice. You should consult with a medical professional before making significant changes to your diet.
-            </p>
-        </div>
-    </section>
-
-    <!-- Community Love Section -->
-    <section class="community-love">
-        <div class="container">
-            <h2 class="section-title">Community Love</h2>
-            <p class="section-subtitle">Real stories from real people achieving their health goals</p>
-            
-            <div class="love-cards-grid">
-                <div class="love-card">
-                    <div class="stars-rating">★★★★★</div>
-                    <blockquote>
-                        "Finally a meal plan that feels fresh and modern. The recipes are genuinely tasty, I actually look forward to cooking now."
-                    </blockquote>
-                    <div class="love-author">
-                        <div class="author-avatar">S</div>
-                        <div>
-                            <strong>Sarah M.</strong>
-                            <p class="author-achievement">Lost 5kg</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="love-card">
-                    <div class="stars-rating">★★★★★</div>
-                    <blockquote>
-                        "The shopping list feature is a game changer. I spend half the time in the store and save money on impulse buys."
-                    </blockquote>
-                    <div class="love-author">
-                        <div class="author-avatar">D</div>
-                        <div>
-                            <strong>David K.</strong>
-                            <p class="author-achievement">Building Muscle</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="love-card">
-                    <div class="stars-rating">★★★★★</div>
-                    <blockquote>
-                        "I love that I can swap meals I don't like. It learns my taste so quickly. The Vegetarian plan is delicious!"
-                    </blockquote>
-                    <div class="love-author">
-                        <div class="author-avatar">E</div>
-                        <div>
-                            <strong>Emma R.</strong>
-                            <p class="author-achievement">Health Goal</p>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn-explore-diets" onclick="window.location.href='onboarding.html'">Explore All Diets</button>
             </div>
         </div>
     </section>
@@ -550,7 +277,7 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Click "Generate Meal Plan" and answer a few questions about your goals, dietary preferences, and restrictions. Our system then generates a personalized weekly meal plan for you—no manual setup needed!</p>
+                        <p>Click "Get started for free" and answer a few questions about your goals, dietary preferences, and restrictions. Our system then generates a personalized weekly meal plan for you—no manual setup needed!</p>
                     </div>
                 </div>
                 
@@ -607,65 +334,6 @@
         </div>
     </section>
 
-    <!-- Why Choose Taastee Section -->
-    <section id="pricing" class="why-taastee">
-        <div class="container">
-            <h2 class="section-title">Why Taastee?</h2>
-            <p class="section-subtitle">Compare us with DIY meal planning and generic diet apps</p>
-            
-            <div class="comparison-table">
-                <div class="comparison-row comparison-header">
-                    <div class="comparison-feature">Feature</div>
-                    <div class="comparison-col">DIY Planning</div>
-                    <div class="comparison-col">Generic Apps</div>
-                    <div class="comparison-col highlight-col">Taastee</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Personalized Plans</div>
-                    <div class="comparison-col">❌</div>
-                    <div class="comparison-col">⚠️ Limited</div>
-                    <div class="comparison-col highlight-col">✅ Fully Custom</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Auto Grocery Lists</div>
-                    <div class="comparison-col">❌</div>
-                    <div class="comparison-col">✅</div>
-                    <div class="comparison-col highlight-col">✅ Smart Sorting</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Macro Tracking</div>
-                    <div class="comparison-col">❌ Manual</div>
-                    <div class="comparison-col">✅</div>
-                    <div class="comparison-col highlight-col">✅ Automatic</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Leftover Management</div>
-                    <div class="comparison-col">❌</div>
-                    <div class="comparison-col">❌</div>
-                    <div class="comparison-col highlight-col">✅ AI-Powered</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Recipe Variety</div>
-                    <div class="comparison-col">⚠️ Limited</div>
-                    <div class="comparison-col">✅ Good</div>
-                    <div class="comparison-col highlight-col">✅ 1000+</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-feature">Time Investment</div>
-                    <div class="comparison-col">❌ Hours</div>
-                    <div class="comparison-col">⚠️ 30 mins</div>
-                    <div class="comparison-col highlight-col">✅ 5 mins</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Final CTA Section -->
     <section class="final-cta">
         <div class="container">
@@ -675,57 +343,14 @@
                 </div>
                 <h2 class="cta-heading">Ready to eat better <br><span class="cta-heading-italic">without the stress?</span></h2>
                 <p class="cta-description">Join thousands who trust AI Meal Planner to simplify their eating and improve their health every day.</p>
-                <button class="btn-cta-white" onclick="window.location.href='onboarding.html'">Get Your Plan</button>
+                <button class="btn-cta-white" onclick="window.location.href='onboarding.html'">Get started for free</button>
                 <div class="cta-benefits">
-                    <span>✓ NO CREDIT CARD REQUIRED</span>
-                    <span>✓ CANCEL ANYTIME</span>
-                    <span>✓ FREE GROCERY LIST</span>
+                    <span class="cta-benefit">✓ 100% FREE</span>
+                    <span class="cta-benefit">✓ NO CREDIT CARD</span>
+                    <span class="cta-benefit">✓ FREE FOREVER</span>
                 </div>
+                <p class="cta-legal-text">By signing up, you agree to our <a href="terms-of-use.html" class="cta-legal-link">Terms of Use</a> and <a href="privacy-policy.html" class="cta-legal-link">Privacy Policy</a>.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- How Taastee Helps Section -->
-    <section class="how-helps">
-        <div class="container">
-            <h2 class="section-title">How Taastee helps you eat better</h2>
-            
-            <div class="helps-content">
-                <p>Our intelligent system creates personalized meal plans based on your calories, macros, and taste preferences. Unlike generic diet templates, Taastee adapts to your unique needs — whether you're following Keto, Vegan, Paleo, or a balanced diet.</p>
-                
-                <p>Each week, you get a complete menu with breakfast, lunch, dinner, and snacks. The app generates a smart grocery list sorted by aisle, so you spend less time shopping and reduce food waste with precise quantities.</p>
-                
-                <p>For weight loss, muscle gain, or general health — we track your macros and adjust your weekly menu based on your progress. It's like having a personal nutritionist, without the cost.</p>
-                
-                <div class="helps-features">
-                    <div class="helps-feature-item">
-                        <span class="helps-icon">🤖</span>
-                        <strong>Smart Meal Generator</strong>
-                    </div>
-                    <div class="helps-feature-item">
-                        <span class="helps-icon">📊</span>
-                        <strong>Custom Macros & Calorie Tracking</strong>
-                    </div>
-                    <div class="helps-feature-item">
-                        <span class="helps-icon">🛒</span>
-                        <strong>Zero Waste Grocery Lists</strong>
-                    </div>
-                    <div class="helps-feature-item">
-                        <span class="helps-icon">🌟</span>
-                        <strong>Any Diet - Keto, Vegan, & More</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Professionals Section -->
-    <section class="professionals">
-        <div class="container">
-            <h2>Taastee Pro</h2>
-            <h3>For Health & Fitness Professionals</h3>
-            <p>Powerful, fast meal planning to level up your business.</p>
-            <button class="btn-link">Learn More</button>
         </div>
     </section>
 
@@ -741,20 +366,10 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#how-it-works">How it works</a></li>
-                        <li><a href="#features">Free Tools</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="#terms">Terms of Use</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#cookies">Cookie Policy</a></li>
+                        <li><a href="terms-of-use.html">Terms of Use</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>

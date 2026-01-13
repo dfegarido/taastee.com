@@ -66,41 +66,49 @@ const caloriesInput = document.getElementById('calories-input');
 const mealsInput = document.getElementById('meals-input');
 const dietSelect = document.getElementById('diet-select');
 
-// Update macro displays when sliders change
-carbsSlider.addEventListener('input', (e) => {
-    carbsDisplay.textContent = e.target.value + 'g';
-});
+// Update macro displays when sliders change (only if elements exist)
+if (carbsSlider && carbsDisplay) {
+    carbsSlider.addEventListener('input', (e) => {
+        carbsDisplay.textContent = e.target.value + 'g';
+    });
+}
 
-fatSlider.addEventListener('input', (e) => {
-    fatDisplay.textContent = e.target.value + 'g';
-});
+if (fatSlider && fatDisplay) {
+    fatSlider.addEventListener('input', (e) => {
+        fatDisplay.textContent = e.target.value + 'g';
+    });
+}
 
-proteinSlider.addEventListener('input', (e) => {
-    proteinDisplay.textContent = e.target.value + 'g';
-});
+if (proteinSlider && proteinDisplay) {
+    proteinSlider.addEventListener('input', (e) => {
+        proteinDisplay.textContent = e.target.value + 'g';
+    });
+}
 
-// Generate meal plan
-generateBtn.addEventListener('click', () => {
-    const calories = parseInt(caloriesInput.value);
-    const numMeals = parseInt(mealsInput.value);
-    const diet = dietSelect.value;
-    const targetCarbs = parseInt(carbsSlider.value);
-    const targetFat = parseInt(fatSlider.value);
-    const targetProtein = parseInt(proteinSlider.value);
+// Generate meal plan (only if elements exist)
+if (generateBtn && caloriesInput && mealsInput && dietSelect && carbsSlider && fatSlider && proteinSlider) {
+    generateBtn.addEventListener('click', () => {
+        const calories = parseInt(caloriesInput.value);
+        const numMeals = parseInt(mealsInput.value);
+        const diet = dietSelect.value;
+        const targetCarbs = parseInt(carbsSlider.value);
+        const targetFat = parseInt(fatSlider.value);
+        const targetProtein = parseInt(proteinSlider.value);
 
-    if (calories < 1000 || calories > 5000) {
-        alert('Please enter calories between 1000 and 5000');
-        return;
-    }
+        if (calories < 1000 || calories > 5000) {
+            alert('Please enter calories between 1000 and 5000');
+            return;
+        }
 
-    if (numMeals < 1 || numMeals > 6) {
-        alert('Please enter number of meals between 1 and 6');
-        return;
-    }
+        if (numMeals < 1 || numMeals > 6) {
+            alert('Please enter number of meals between 1 and 6');
+            return;
+        }
 
-    const mealPlan = generateMealPlan(calories, numMeals, diet, targetCarbs, targetFat, targetProtein);
-    displayMealPlan(mealPlan);
-});
+        const mealPlan = generateMealPlan(calories, numMeals, diet, targetCarbs, targetFat, targetProtein);
+        displayMealPlan(mealPlan);
+    });
+}
 
 // Generate meal plan algorithm
 function generateMealPlan(calories, numMeals, diet, targetCarbs, targetFat, targetProtein) {
@@ -224,34 +232,40 @@ function displayMealPlan(mealPlan) {
     mealPlanResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Form validation
-caloriesInput.addEventListener('input', (e) => {
-    const value = parseInt(e.target.value);
-    if (value < 1000) e.target.value = 1000;
-    if (value > 5000) e.target.value = 5000;
-});
+// Form validation (only if elements exist)
+if (caloriesInput) {
+    caloriesInput.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        if (value < 1000) e.target.value = 1000;
+        if (value > 5000) e.target.value = 5000;
+    });
+}
 
-mealsInput.addEventListener('input', (e) => {
-    const value = parseInt(e.target.value);
-    if (value < 1) e.target.value = 1;
-    if (value > 6) e.target.value = 6;
-});
+if (mealsInput) {
+    mealsInput.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        if (value < 1) e.target.value = 1;
+        if (value > 6) e.target.value = 6;
+    });
+}
 
 // FAQ Accordion functionality
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement;
-        const isActive = faqItem.classList.contains('active');
-        
-        // Close all FAQ items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
         });
-        
-        // Open clicked item if it wasn't active
-        if (!isActive) {
-            faqItem.classList.add('active');
-        }
     });
 });
 

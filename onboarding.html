@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Started - Taastee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="onboarding.css">
 </head>
@@ -15,7 +18,7 @@
                 <a href="index.html" class="onboarding-logo">
                     <img src="https://homezies.com/wp-content/uploads/2026/01/Taastee-Logo-1.png" alt="Taastee Logo" class="onboarding-logo-img">
                 </a>
-                <div class="header-step">Step <span id="headerStep">1</span> of <span id="headerTotal">27</span></div>
+                <div class="header-step">Step <span id="headerStep">1</span> of <span id="headerTotal">28</span></div>
             </div>
         </header>
 
@@ -775,12 +778,46 @@
             <!-- Final Step: Email -->
             <div class="step" data-step="27">
                 <h1 class="step-title">Almost done! 🎉</h1>
-                <p class="step-subtitle">Enter your email to get your personalized meal plan</p>
-                <div class="input-group">
-                    <input type="email" class="input-field" id="email" placeholder="your@email.com">
+                <p class="step-subtitle">Enter your details to get your personalized meal plan</p>
+                <div class="input-group" style="flex-direction: column; gap: 1rem; max-width: 500px; margin: 0 auto;">
+                    <input type="text" class="input-field" id="firstName" placeholder="First Name" style="width: 100%;">
+                    <input type="text" class="input-field" id="lastName" placeholder="Last Name" style="width: 100%;">
+                    <input type="email" class="input-field" id="email" placeholder="your@email.com" style="width: 100%;">
+                </div>
+                <div class="disclaimer-box">
+                    <p class="disclaimer-text">
+                        <strong>By submitting this form, you agree to receive</strong> your personalized meal plan by email (typically once per week or more). You also agree that we may send you occasional promotional offers, deals, or recommendations we think you'll enjoy.
+                    </p>
+                    <p class="disclaimer-text">
+                        We respect your privacy. Your information will only be used to deliver your meal plan and relevant communications, and will not be sold to unrelated third parties. You can unsubscribe at any time using the link in our emails.
+                    </p>
+                    <p class="disclaimer-text">
+                        Your data is handled in accordance with our <a href="privacy-policy.html" target="_blank" class="disclaimer-link">Privacy Policy</a>.
+                    </p>
+                </div>
+                <div class="disclaimer-checkbox-container">
+                    <label class="disclaimer-checkbox-label">
+                        <input type="checkbox" id="agreeCheckbox" class="disclaimer-checkbox">
+                        <span class="disclaimer-checkbox-text">I agree to the terms stated above and consent to receive my personalized meal plan and occasional promotional communications via email.</span>
+                    </label>
                 </div>
                 <button class="btn-continue btn-final" onclick="submitOnboarding()">Get My Meal Plan →</button>
-                <p class="privacy-note">🔒 Your information is secure. We'll never spam you.</p>
+            </div>
+
+            <!-- Confirmation Screen -->
+            <div class="step" data-step="28" id="confirmationScreen" style="text-align: center;">
+                <div class="confirmation-icon">✅</div>
+                <h1 class="step-title">Thank You for Subscribing! 🎉</h1>
+                <p class="step-subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    Your personalized meal plan has been sent to your email!
+                </p>
+                <p class="confirmation-message">
+                    Check your inbox for your custom meal plan. We've sent it to the email address you provided.
+                    You'll receive weekly meal plans and helpful tips to support your health journey.
+                </p>
+                <button class="btn-continue" onclick="window.location.href='index.html'" style="margin-top: 2rem;">
+                    Back to Home →
+                </button>
             </div>
 
         </div>

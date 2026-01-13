@@ -1,6 +1,6 @@
 // Onboarding State
 let currentStepIndex = 0;
-const totalSteps = 27;
+const totalSteps = 28;
 const userData = {};
 
 // Initialize
@@ -179,22 +179,63 @@ function validateStep(step) {
 
 // Submit onboarding
 function submitOnboarding() {
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
+    const agreeCheckbox = document.getElementById('agreeCheckbox');
     
-    if (!email.value || !email.value.includes('@')) {
-        email.focus();
-        email.style.borderColor = '#ff6b35';
+    // Validate first name
+    if (!firstName.value || firstName.value.trim() === '') {
+        firstName.focus();
+        firstName.style.borderColor = '#2d6a5c';
         return;
     }
     
+    // Validate last name
+    if (!lastName.value || lastName.value.trim() === '') {
+        lastName.focus();
+        lastName.style.borderColor = '#2d6a5c';
+        return;
+    }
+    
+    // Validate email
+    if (!email.value || !email.value.includes('@')) {
+        email.focus();
+        email.style.borderColor = '#2d6a5c';
+        return;
+    }
+    
+    // Validate checkbox agreement
+    if (!agreeCheckbox.checked) {
+        alert('Please agree to the terms by checking the box before submitting.');
+        agreeCheckbox.focus();
+        return;
+    }
+    
+    userData.firstName = firstName.value.trim();
+    userData.lastName = lastName.value.trim();
     userData.email = email.value;
     
     // Store data
     localStorage.setItem('taasteeUserData', JSON.stringify(userData));
     
-    // Redirect to offer page or dashboard
+    // Log user data
     console.log('User Data:', userData);
-    window.location.href = 'offer.html'; // Or wherever you want to send them
+    
+    // Hide header, progress bar, and navigation buttons
+    document.querySelector('.onboarding-header').style.display = 'none';
+    document.querySelector('.progress-container').style.display = 'none';
+    document.querySelector('.navigation-buttons').style.display = 'none';
+    
+    // Hide current step
+    document.querySelector('.step.active').classList.remove('active');
+    
+    // Show confirmation screen
+    const confirmationScreen = document.querySelector('[data-step="28"]');
+    confirmationScreen.classList.add('active');
+    
+    // TODO: Send data to your server/email service here
+    // Example: fetch('/api/submit-meal-plan', { method: 'POST', body: JSON.stringify(userData) })
 }
 
 // Add selected state styles
