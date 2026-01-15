@@ -87,15 +87,7 @@
             <div class="step" data-step="3">
                 <h1 class="step-title">What's your height?</h1>
                 <p class="step-subtitle">We need this for accurate calorie calculations</p>
-                <div class="measurement-toggle">
-                    <button class="toggle-btn active" data-unit="imperial">ft/in</button>
-                    <button class="toggle-btn" data-unit="metric">cm</button>
-                </div>
-                <div class="input-group imperial-input">
-                    <input type="number" class="input-field" id="heightFt" placeholder="Feet" min="4" max="7">
-                    <input type="number" class="input-field" id="heightIn" placeholder="Inches" min="0" max="11">
-                </div>
-                <div class="input-group metric-input" style="display: none;">
+                <div class="input-group">
                     <input type="number" class="input-field" id="heightCm" placeholder="Height" min="120" max="220">
                     <span class="input-unit">cm</span>
                 </div>
@@ -106,13 +98,9 @@
             <div class="step" data-step="4">
                 <h1 class="step-title">What's your current weight?</h1>
                 <p class="step-subtitle">Be honest - we're here to help!</p>
-                <div class="measurement-toggle">
-                    <button class="toggle-btn active" data-unit="lbs">lbs</button>
-                    <button class="toggle-btn" data-unit="kg">kg</button>
-                </div>
                 <div class="input-group">
-                    <input type="number" class="input-field" id="currentWeight" placeholder="Current weight" min="80" max="500">
-                    <span class="input-unit" id="weightUnit">lbs</span>
+                    <input type="number" class="input-field" id="currentWeight" placeholder="Current weight" min="30" max="250">
+                    <span class="input-unit" id="weightUnit">kg</span>
                 </div>
                 <button class="btn-continue" onclick="nextStep()">Continue</button>
             </div>
@@ -122,8 +110,8 @@
                 <h1 class="step-title">What's your target weight?</h1>
                 <p class="step-subtitle">Set a realistic goal</p>
                 <div class="input-group">
-                    <input type="number" class="input-field" id="targetWeight" placeholder="Target weight" min="80" max="500">
-                    <span class="input-unit" id="targetWeightUnit">lbs</span>
+                    <input type="number" class="input-field" id="targetWeight" placeholder="Target weight" min="30" max="250">
+                    <span class="input-unit" id="targetWeightUnit">kg</span>
                 </div>
                 <button class="btn-continue" onclick="nextStep()">Continue</button>
             </div>

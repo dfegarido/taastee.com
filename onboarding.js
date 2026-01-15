@@ -178,7 +178,7 @@ function validateStep(step) {
 }
 
 // Submit onboarding
-function submitOnboarding() {
+async function submitOnboarding() {
     const firstName = document.getElementById('firstName');
     const lastName = document.getElementById('lastName');
     const email = document.getElementById('email');
@@ -216,26 +216,354 @@ function submitOnboarding() {
     userData.lastName = lastName.value.trim();
     userData.email = email.value;
     
-    // Store data
+    // Store data locally
     localStorage.setItem('taasteeUserData', JSON.stringify(userData));
     
     // Log user data
     console.log('User Data:', userData);
     
-    // Hide header, progress bar, and navigation buttons
-    document.querySelector('.onboarding-header').style.display = 'none';
-    document.querySelector('.progress-container').style.display = 'none';
-    document.querySelector('.navigation-buttons').style.display = 'none';
+    // Submit to JotForm
+    try {
+        await submitToJotForm(userData);
+        
+        // Hide header, progress bar, and navigation buttons
+        document.querySelector('.onboarding-header').style.display = 'none';
+        document.querySelector('.progress-container').style.display = 'none';
+        document.querySelector('.navigation-buttons').style.display = 'none';
+        
+        // Hide current step
+        document.querySelector('.step.active').classList.remove('active');
+        
+        // Show confirmation screen
+        const confirmationScreen = document.querySelector('[data-step="28"]');
+        confirmationScreen.classList.add('active');
+        
+    } catch (error) {
+        console.error('Error submitting to JotForm:', error);
+        alert('There was an error submitting your information. Please try again.');
+    }
+}
+
+// Submit data to JotForm
+async function submitToJotForm(data) {
+    // Your JotForm Form ID
+    const JOTFORM_FORM_ID = '253378588290067';
     
-    // Hide current step
-    document.querySelector('.step.active').classList.remove('active');
+    console.log('Submitting to JotForm with data:', data);
     
-    // Show confirmation screen
-    const confirmationScreen = document.querySelector('[data-step="28"]');
-    confirmationScreen.classList.add('active');
+    // Create form submission - JotForm expects standard form encoding
+    const formData = new URLSearchParams();
     
-    // TODO: Send data to your server/email service here
-    // Example: fetch('/api/submit-meal-plan', { method: 'POST', body: JSON.stringify(userData) })
+    // Required fields
+    formData.append('formID', JOTFORM_FORM_ID);
+    
+    // Personal Information
+    if (data.firstName) formData.append('q3_firstName', data.firstName);
+    if (data.lastName) formData.append('q4_lastName', data.lastName);
+    if (data.email) formData.append('q5_email', data.email);
+    
+    // Biological Sex (step 0)
+    if (data.step0) {
+        // Convert to match JotForm values: "female" -> "Female", "male" -> "Male"
+        const sex = data.step0.charAt(0).toUpperCase() + data.step0.slice(1);
+        formData.append('q6_biologicalSex', sex);
+    }
+    
+    // Age
+    if (data.age) formData.append('q7_age', data.age);
+    
+    // Height with unit (e.g., "161 cm")
+    if (data.heightCm) {
+        formData.append('q40_height40', `${data.heightCm} cm`);
+    }
+    
+    // Current Weight with unit (e.g., "56 kg")
+    if (data.currentWeight) {
+        formData.append('q41_currentWeight', `${data.currentWeight} kg`);
+    }
+    
+    // Target Weight with unit (e.g., "60 kg")
+    if (data.targetWeight) {
+        formData.append('q42_targetWeight', `${data.targetWeight} kg`);
+    }
+    
+    // Primary Goal (step 1)
+    if (data.step1) {
+        const goalMap = {
+            'lose': 'Lose weight',
+            'maintain': 'Maintain weight',
+            'gain': 'Gain muscle',
+            'health': 'Improve health'
+        };
+        formData.append('q16_primaryGoal', goalMap[data.step1] || data.step1);
+    }
+    
+    // Activity Level (step 6)
+    if (data.step6) {
+        const activityMap = {
+            'sedentary': 'Sedentary (little or no exercise)',
+            'light': 'Lightly Active(1-3 days/week)',
+            'moderate': 'Moderately Active(3-5 days/week)',
+            'very': 'Very Active(6-7 days/week)',
+            'extra': 'Extra Active(Very hard exercise & physical job)'
+        };
+        formData.append('q17_activityLevel', activityMap[data.step6] || data.step6);
+    }
+    
+    // Diet Type (step 7)
+    if (data.step7) {
+        const dietMap = {
+            'balanced': 'Balanced (Everything)',
+            'keto': 'Keto (Low carb, high fat)',
+            'vegan': 'Vegan (Plant-based)',
+            'vegetarian': 'Vegetarian',
+            'paleo': 'Paleo (Whole foods)',
+            'mediterranean': 'Mediterranean'
+        };
+        formData.append('q18_diertType', dietMap[data.step7] || data.step7);
+    }
+    
+    // Meals Per Day (step 8)
+    if (data.step8) formData.append('q19_mealsPer', data.step8);
+    
+    // Cooking Time (step 9)
+    if (data.step9) {
+        const timeMap = {
+            '15': '15 minutes or less',
+            '30': '30 minutes',
+            '45': '45 minutes',
+            '60': '1 hour or more'
+        };
+        formData.append('q20_cookingTime', timeMap[data.step9] || data.step9);
+    }
+    
+    // Food Allergies (step 10) - checkboxes
+    if (Array.isArray(data.step10) && data.step10.length > 0) {
+        data.step10.forEach(allergy => {
+            const allergyMap = {
+                'nuts': 'Nuts',
+                'dairy': 'Dairy',
+                'eggs': 'Eggs',
+                'shellfish': 'Shellfish',
+                'soy': 'Soy',
+                'gluten': 'Gluten',
+                'none': 'No allergies'
+            };
+            formData.append('q21_foodAllergies[]', allergyMap[allergy] || allergy);
+        });
+    }
+    
+    // Food Dislikes (step 11) - checkboxes
+    if (Array.isArray(data.step11) && data.step11.length > 0) {
+        data.step11.forEach(dislike => {
+            const dislikeMap = {
+                'fish': 'Fish & Seafood',
+                'beef': 'Beef',
+                'pork': 'Pork',
+                'chicken': 'Chicken',
+                'spicy': 'Spicy foods',
+                'mushrooms': 'Mushrooms',
+                'none': 'No dislikes'
+            };
+            formData.append('q22_foodDislikes[]', dislikeMap[dislike] || dislike);
+        });
+    }
+    
+    // Cooking Experience (step 12)
+    if (data.step12) {
+        const expMap = {
+            'beginner': 'Beginner - Simple recipe only',
+            'intermediate': 'Intermediate - Can handle most recipes',
+            'advanced': 'Advanced - Love Challenged!'
+        };
+        formData.append('q23_cookingExperience', expMap[data.step12] || data.step12);
+    }
+    
+    // Meal Prep (step 13)
+    if (data.step13) {
+        const prepMap = {
+            'yes': 'Yes, I meal prep for the week',
+            'sometimes': 'Sometimes, depends on the week',
+            'no': 'No, I cook fresh daily'
+        };
+        formData.append('q24_mealPrep', prepMap[data.step13] || data.step13);
+    }
+    
+    // Budget (step 14)
+    if (data.step14) {
+        const budgetMap = {
+            'low': 'Budget-friendly ($50-$75/week)',
+            'medium': 'Moderate ($75-$125/week)',
+            'high': 'Premium ($125+/week)',
+            'flexible': 'Flexible (Quality matters most)'
+        };
+        formData.append('q25_weeklyGrocery', budgetMap[data.step14] || data.step14);
+    }
+    
+    // Household Size (step 15)
+    if (data.step15) formData.append('q26_householdSize', data.step15);
+    
+    // Include Snacks (step 16)
+    if (data.step16) {
+        const snackMap = {
+            'yes': 'Yes',
+            'no': 'No'
+        };
+        formData.append('q27_includeSnacks', snackMap[data.step16] || data.step16);
+    }
+    
+    // Breakfast Type (step 17)
+    if (data.step17) {
+        const breakfastMap = {
+            'quick': 'Quick & Simple (5-10 min)',
+            'hearty': 'Hearty & Cooked (15-20 min)',
+            'smoothie': 'Smoothies & Drinks',
+            'skip': 'I skip breakfast'
+        };
+        formData.append('q28_breakfastType', breakfastMap[data.step17] || data.step17);
+    }
+    
+    // Protein Preference (step 18)
+    if (data.step18) {
+        const proteinMap = {
+            'chicken': 'Chicken',
+            'fish': 'Fish & Seafood',
+            'beef': 'Beef',
+            'plant': 'Plant-based proteins',
+            'variety': 'Variety - Mix it up!'
+        };
+        formData.append('q29_proteinPreference', proteinMap[data.step18] || data.step18);
+    }
+    
+    // Kitchen Equipment (step 19) - checkboxes
+    if (Array.isArray(data.step19) && data.step19.length > 0) {
+        data.step19.forEach(equipment => {
+            const equipMap = {
+                'oven': 'Oven',
+                'microwave': 'Microwave',
+                'airfryer': 'Air Fryer',
+                'slowcooker': 'Slow Cooker',
+                'instantpot': 'Instant Pot',
+                'blender': 'Blender',
+                'grill': 'Grill'
+            };
+            formData.append('q30_kitchenEquipment[]', equipMap[equipment] || equipment);
+        });
+    }
+    
+    // Leftovers Preference (step 20)
+    if (data.step20) {
+        const leftoverMap = {
+            'love': 'Love them - saves time!',
+            'okay': "They're okay for 1-2 days",
+            'fresh': 'Prefer fresh meals every time'
+        };
+        formData.append('q31_leftoversPreference', leftoverMap[data.step20] || data.step20);
+    }
+    
+    // Water Intake (step 21)
+    if (data.step21) {
+        const waterMap = {
+            'low': 'Less than 4 glasses',
+            'medium': '4-6 glasses',
+            'good': '7-8 glasses (recommended)',
+            'high': 'More than 8 glasses'
+        };
+        formData.append('q32_dailyWater', waterMap[data.step21] || data.step21);
+    }
+    
+    // Sleep Quality (step 22)
+    if (data.step22) {
+        const sleepMap = {
+            'poor': 'Poor - often feel tired',
+            'okay': 'Okay - Could be better',
+            'good': 'Good - usually well-rested',
+            'excellent': 'Execellent - sleep like baby'
+        };
+        formData.append('q33_sleepQuality', sleepMap[data.step22] || data.step22);
+    }
+    
+    // Health Conditions (step 23) - checkboxes
+    if (Array.isArray(data.step23) && data.step23.length > 0) {
+        data.step23.forEach(condition => {
+            const conditionMap = {
+                'diabetes': 'Diabetes',
+                'hypertension': 'High Blood Pressure',
+                'cholesterol': 'High Cholesterol',
+                'thyroid': 'Thyroid Issues',
+                'ibs': 'IBS / Digestive Issues',
+                'none': 'None'
+            };
+            formData.append('q34_healthConditions[]', conditionMap[condition] || condition);
+        });
+    }
+    
+    // Motivation (step 24)
+    if (data.step24) {
+        const motivationMap = {
+            'health': 'Better health & energy',
+            'appearance': 'Look and feel better',
+            'confidence': 'Boost confidence',
+            'lifestyle': 'Sustainable lifestyle change'
+        };
+        formData.append('q35_primaryMotivation', motivationMap[data.step24] || data.step24);
+    }
+    
+    // Previous Diets (step 25)
+    if (data.step25) {
+        const dietExpMap = {
+            'never': 'Never -  this is my first time',
+            'few': "Tried a few, didn't stick",
+            'many': 'Many times, looking for what works',
+            'success': 'Had success, maintaining now'
+        };
+        formData.append('q36_previousDiet', dietExpMap[data.step25] || data.step25);
+    }
+    
+    // Start Date (step 26)
+    if (data.step26) {
+        const startMap = {
+            'today': "Today - I'm ready!",
+            'tomorrow': 'Tomorrow',
+            'monday': 'Next Monday',
+            'later': 'Within the next 2 weeks'
+        };
+        formData.append('q37_startDate', startMap[data.step26] || data.step26);
+    }
+    
+    // Consent Checkbox - exact value from JotForm (with non-breaking spaces)
+    formData.append('q38_consentCheckbox[]', 'I agree to receive my\u00A0personalized meal plan and occasional promotional communications\u00A0via email');
+    
+    // Anti-spam field (should be empty)
+    formData.append('website', '');
+    
+    console.log('FormData being sent:', Object.fromEntries(formData));
+    
+    // Submit to JotForm
+    try {
+        const response = await fetch(`https://submit.jotform.com/submit/${JOTFORM_FORM_ID}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString()
+        });
+        
+        console.log('JotForm response status:', response.status);
+        
+        if (response.ok || response.type === 'opaque') {
+            console.log('Form submitted successfully!');
+            return response;
+        } else {
+            console.error('Form submission failed with status:', response.status);
+            const text = await response.text();
+            console.error('Response text:', text);
+            throw new Error(`Failed to submit to JotForm: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error submitting to JotForm:', error);
+        throw error;
+    }
 }
 
 // Add selected state styles
