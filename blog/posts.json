@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "title": "10 Easy Keto Recipes for Beginners",
+    "slug": "10-easy-keto-recipes-for-beginners",
+    "excerpt": "Starting your keto journey? These simple, delicious recipes will make your transition smooth and enjoyable.",
+    "content": "<p>Starting a keto diet doesn't have to be complicated. Here are 10 simple recipes that anyone can make...</p>",
+    "author": "Taastee Team",
+    "date": "2026-01-15",
+    "category": "Keto",
+    "image": "/images/keto.webp",
+    "readTime": "5 min read"
+  },
+  {
+    "id": 2,
+    "title": "The Complete Guide to Meal Prepping",
+    "slug": "complete-guide-to-meal-prepping",
+    "excerpt": "Save time and stay on track with your nutrition goals by mastering the art of meal prep.",
+    "content": "<p>Meal prepping is one of the most effective ways to maintain a healthy diet. Here's everything you need to know...</p>",
+    "author": "Taastee Team",
+    "date": "2026-01-12",
+    "category": "Tips & Tricks",
+    "image": "/images/meal-prep.jpg",
+    "readTime": "8 min read"
+  },
+  {
+    "id": 3,
+    "title": "Plant-Based Protein: A Complete Guide",
+    "slug": "plant-based-protein-guide",
+    "excerpt": "Discover the best sources of plant-based protein and how to incorporate them into your meals.",
+    "content": "<p>Whether you're vegan or just looking to add more plant-based options to your diet, here's your complete guide...</p>",
+    "author": "Taastee Team",
+    "date": "2026-01-10",
+    "category": "Vegan",
+    "image": "/images/vegan.webp",
+    "readTime": "6 min read"
+  }
+]
+
