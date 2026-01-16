@@ -4,11 +4,11 @@
     "title": "10 Easy Keto Recipes for Beginners",
     "slug": "10-easy-keto-recipes-for-beginners",
     "excerpt": "Starting your keto journey? These simple, delicious recipes will make your transition smooth and enjoyable.",
-    "content": "<p>Starting a keto diet doesn't have to be complicated. Here are 10 simple recipes that anyone can make...</p>",
+    "content": "<h2>Getting Started with Keto</h2><p>Starting a keto diet doesn't have to be complicated. The key is to focus on whole foods, healthy fats, and moderate protein while keeping your carbs low.</p><h3>Why These Recipes Work</h3><p>Each of these recipes is designed with beginners in mind - simple ingredients, easy steps, and delicious results that will keep you motivated on your keto journey.</p><p>From breakfast scrambles to satisfying dinners, you'll find everything you need to succeed with keto eating.</p>",
     "author": "Taastee Team",
     "date": "2026-01-15",
     "category": "Keto",
-    "image": "/images/keto.webp",
+    "image": "../images/keto.webp",
     "readTime": "5 min read"
   },
   {
@@ -16,11 +16,11 @@
     "title": "The Complete Guide to Meal Prepping",
     "slug": "complete-guide-to-meal-prepping",
     "excerpt": "Save time and stay on track with your nutrition goals by mastering the art of meal prep.",
-    "content": "<p>Meal prepping is one of the most effective ways to maintain a healthy diet. Here's everything you need to know...</p>",
+    "content": "<h2>Why Meal Prep Matters</h2><p>Meal prepping is one of the most effective ways to maintain a healthy diet. It saves time, reduces stress, and helps you stick to your nutrition goals even during busy weeks.</p><h3>Getting Started</h3><p>Start small - choose one or two meals to prep each week. As you get more comfortable, you can expand your meal prep routine.</p><h3>Essential Tools</h3><p>Quality containers, a good knife, and batch cooking techniques will make your meal prep journey much easier.</p>",
     "author": "Taastee Team",
     "date": "2026-01-12",
     "category": "Tips & Tricks",
-    "image": "/images/meal-prep.jpg",
+    "image": "../images/tim-chow-pa_McjjynOA-unsplash.jpg",
     "readTime": "8 min read"
   },
   {
@@ -28,12 +28,48 @@
     "title": "Plant-Based Protein: A Complete Guide",
     "slug": "plant-based-protein-guide",
     "excerpt": "Discover the best sources of plant-based protein and how to incorporate them into your meals.",
-    "content": "<p>Whether you're vegan or just looking to add more plant-based options to your diet, here's your complete guide...</p>",
+    "content": "<h2>Understanding Plant-Based Protein</h2><p>Whether you're vegan or just looking to add more plant-based options to your diet, getting enough protein is essential for health and vitality.</p><h3>Top Protein Sources</h3><p>Legumes, tofu, tempeh, quinoa, and nuts are all excellent sources of plant-based protein. Learn how to incorporate them deliciously into your meals.</p><h3>Complete vs. Incomplete Proteins</h3><p>Understanding protein combinations can help you ensure you're getting all essential amino acids from plant sources.</p>",
     "author": "Taastee Team",
     "date": "2026-01-10",
     "category": "Vegan",
-    "image": "/images/vegan.webp",
+    "image": "../images/vegan.webp",
     "readTime": "6 min read"
+  },
+  {
+    "id": 4,
+    "title": "Paleo Diet: Back to Basics",
+    "slug": "paleo-diet-back-to-basics",
+    "excerpt": "Learn the fundamentals of eating like our ancestors and why the paleo diet works for modern health.",
+    "content": "<h2>What is the Paleo Diet?</h2><p>The Paleo diet focuses on eating whole, unprocessed foods that were available to our hunter-gatherer ancestors.</p><h3>Core Principles</h3><p>Emphasis on meat, fish, vegetables, fruits, nuts, and seeds while avoiding grains, dairy, and processed foods.</p><h3>Benefits You'll Notice</h3><p>Improved energy, better digestion, and sustainable weight management are common benefits people experience on a paleo diet.</p>",
+    "author": "Taastee Team",
+    "date": "2026-01-08",
+    "category": "Paleo",
+    "image": "../images/paleo.webp",
+    "readTime": "7 min read"
+  },
+  {
+    "id": 5,
+    "title": "5 Common Diet Mistakes and How to Avoid Them",
+    "slug": "5-common-diet-mistakes",
+    "excerpt": "Don't let these common pitfalls derail your health journey. Learn what to watch out for.",
+    "content": "<h2>Mistake #1: Too Restrictive</h2><p>Being too strict can lead to burnout. Balance is key to long-term success.</p><h3>Mistake #2: Not Planning Ahead</h3><p>Without a plan, you're more likely to make poor food choices when hunger strikes.</p><h3>Mistake #3: Ignoring Portion Sizes</h3><p>Even healthy foods need to be eaten in appropriate amounts for your goals.</p>",
+    "author": "Taastee Team",
+    "date": "2026-01-05",
+    "category": "Tips & Tricks",
+    "image": "../images/jake-nackos-IF9TK5Uy-KI-unsplash.jpg",
+    "readTime": "6 min read"
+  },
+  {
+    "id": 6,
+    "title": "Healthy Grocery Shopping on a Budget",
+    "slug": "healthy-grocery-shopping-budget",
+    "excerpt": "Eating healthy doesn't have to break the bank. Smart shopping strategies for every budget.",
+    "content": "<h2>Plan Before You Shop</h2><p>Creating a meal plan and shopping list before heading to the store can save you money and reduce food waste.</p><h3>Buy in Season</h3><p>Seasonal produce is not only fresher but also more affordable. Learn what's in season each month.</p><h3>Smart Substitutions</h3><p>Discover budget-friendly alternatives to expensive health foods that deliver similar nutritional benefits.</p>",
+    "author": "Taastee Team",
+    "date": "2026-01-03",
+    "category": "Tips & Tricks",
+    "image": "../images/ian-dooley-d1UPkiFd04A-unsplash.jpg",
+    "readTime": "5 min read"
   }
 ]
 
