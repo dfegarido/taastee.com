@@ -1,0 +1,22 @@
+# API Keys and Secrets
+blog/config.js
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Debug files
+blog/debug.html
+

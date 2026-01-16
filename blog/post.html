@@ -302,7 +302,13 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script src="config.js"></script>
     <script>
+        // Get config from config.js
+        const AIRTABLE_API_KEY = BLOG_CONFIG.AIRTABLE_API_KEY;
+        const AIRTABLE_BASE_ID = BLOG_CONFIG.AIRTABLE_BASE_ID;
+        const AIRTABLE_TABLE_NAME = BLOG_CONFIG.AIRTABLE_TABLE_NAME;
+
         let currentPost = null;
         let allPosts = [];
 
@@ -312,7 +318,7 @@
             return urlParams.get('slug');
         }
 
-        // Load post
+        // Load post from Airtable
         async function loadPost() {
             const slug = getSlugFromURL();
             
@@ -322,19 +328,77 @@
             }
 
             try {
-                const response = await fetch('posts.json');
-                allPosts = await response.json();
-                currentPost = allPosts.find(post => post.slug === slug);
+                const airtableUrl = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula=AND({Slug}='${slug}',{Published}=1)`;
+                
+                const response = await fetch(airtableUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`
+                    }
+                });
 
-                if (!currentPost) {
+                if (!response.ok) {
+                    throw new Error(`Airtable API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.records.length === 0) {
                     window.location.href = 'blog.html';
                     return;
                 }
 
+                // Transform Airtable data
+                currentPost = {
+                    id: data.records[0].id,
+                    title: data.records[0].fields.Title || 'Untitled',
+                    slug: data.records[0].fields.Slug || '',
+                    excerpt: data.records[0].fields.Excerpt || '',
+                    content: data.records[0].fields.Content || '',
+                    author: data.records[0].fields.Author || 'Taastee Team',
+                    date: data.records[0].fields.Date || new Date().toISOString().split('T')[0],
+                    category: data.records[0].fields.Category || 'Tips & Tricks',
+                    image: data.records[0].fields.Image?.[0]?.url || '../images/tim-chow-pa_McjjynOA-unsplash.jpg',
+                    readTime: data.records[0].fields.ReadTime || '5 min read'
+                };
+
                 displayPost(currentPost);
+                
+                // Load all posts for related posts
+                await loadAllPosts();
                 displayRelatedPosts(currentPost);
             } catch (error) {
                 console.error('Error loading post:', error);
+                window.location.href = 'blog.html';
+            }
+        }
+
+        // Load all posts for related posts section
+        async function loadAllPosts() {
+            try {
+                const airtableUrl = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula={Published}=1&sort[0][field]=Date&sort[0][direction]=desc`;
+                
+                const response = await fetch(airtableUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`
+                    }
+                });
+
+                const data = await response.json();
+                
+                allPosts = data.records.map(record => ({
+                    id: record.id,
+                    title: record.fields.Title || 'Untitled',
+                    slug: record.fields.Slug || '',
+                    excerpt: record.fields.Excerpt || '',
+                    content: record.fields.Content || '',
+                    author: record.fields.Author || 'Taastee Team',
+                    date: record.fields.Date || new Date().toISOString().split('T')[0],
+                    category: record.fields.Category || 'Tips & Tricks',
+                    image: record.fields.Image?.[0]?.url || '../images/tim-chow-pa_McjjynOA-unsplash.jpg',
+                    readTime: record.fields.ReadTime || '5 min read'
+                }));
+            } catch (error) {
+                console.error('Error loading all posts:', error);
             }
         }
 

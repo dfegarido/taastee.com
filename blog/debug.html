@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtable Debug - Taastee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1 { color: #2d6a5c; }
+        .status { 
+            padding: 15px; 
+            margin: 20px 0; 
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #2d6a5c;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .btn {
+            padding: 10px 20px;
+            background: #2d6a5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #3d8b75;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Airtable Debug Tool</h1>
+    
+    <div id="status" class="status info">
+        Loading... Connecting to Airtable...
+    </div>
+
+    <button class="btn" onclick="loadData()">Refresh Data</button>
+
+    <h2>Configuration:</h2>
+    <pre id="config"></pre>
+
+    <h2>Raw API Response:</h2>
+    <pre id="rawResponse"></pre>
+
+    <h2>Posts Found:</h2>
+    <div id="postsCount"></div>
+    <table id="postsTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Published</th>
+                <th>Fields</th>
+            </tr>
+        </thead>
+        <tbody id="postsBody"></tbody>
+    </table>
+
+    <script src="config.js"></script>
+    <script>
+        const statusEl = document.getElementById('status');
+        const configEl = document.getElementById('config');
+        const rawResponseEl = document.getElementById('rawResponse');
+        const postsCountEl = document.getElementById('postsCount');
+        const postsTableEl = document.getElementById('postsTable');
+        const postsBodyEl = document.getElementById('postsBody');
+
+        // Show config (hide API key for security)
+        configEl.textContent = JSON.stringify({
+            AIRTABLE_BASE_ID: BLOG_CONFIG.AIRTABLE_BASE_ID,
+            AIRTABLE_TABLE_NAME: BLOG_CONFIG.AIRTABLE_TABLE_NAME,
+            AIRTABLE_API_KEY: BLOG_CONFIG.AIRTABLE_API_KEY.substring(0, 15) + '...'
+        }, null, 2);
+
+        async function loadData() {
+            statusEl.className = 'status info';
+            statusEl.textContent = '⏳ Loading data from Airtable...';
+            
+            try {
+                // Load ALL records (no filter)
+                const url = `https://api.airtable.com/v0/${BLOG_CONFIG.AIRTABLE_BASE_ID}/${BLOG_CONFIG.AIRTABLE_TABLE_NAME}`;
+                
+                console.log('Fetching from:', url);
+                
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${BLOG_CONFIG.AIRTABLE_API_KEY}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                // Show raw response
+                rawResponseEl.textContent = JSON.stringify(data, null, 2);
+                
+                // Show results
+                if (data.records && data.records.length > 0) {
+                    statusEl.className = 'status success';
+                    statusEl.textContent = `✅ Success! Found ${data.records.length} record(s) in Airtable`;
+                    
+                    postsCountEl.innerHTML = `<strong>${data.records.length} record(s) found</strong>`;
+                    postsTableEl.style.display = 'table';
+                    
+                    postsBodyEl.innerHTML = data.records.map(record => `
+                        <tr>
+                            <td>${record.fields.Title || '❌ Missing'}</td>
+                            <td>${record.fields.Slug || '❌ Missing'}</td>
+                            <td>${record.fields.Category || '❌ Missing'}</td>
+                            <td>${record.fields.Date || '❌ Missing'}</td>
+                            <td>${record.fields.Published ? '✅ Yes' : '❌ No'}</td>
+                            <td><pre style="font-size: 11px;">${JSON.stringify(record.fields, null, 2)}</pre></td>
+                        </tr>
+                    `).join('');
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.textContent = '❌ No records found in your Airtable table';
+                    postsCountEl.innerHTML = '<strong>0 records found. You need to add posts to your Airtable!</strong>';
+                }
+                
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = `❌ Error: ${error.message}`;
+                rawResponseEl.textContent = error.stack;
+                console.error('Error:', error);
+            }
+        }
+
+        // Load on page load
+        loadData();
+    </script>
+</body>
+</html>
+
