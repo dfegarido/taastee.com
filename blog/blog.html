@@ -242,6 +242,7 @@
             <button class="filter-btn active" data-category="all">All Posts</button>
             <button class="filter-btn" data-category="Keto">Keto</button>
             <button class="filter-btn" data-category="Vegan">Vegan</button>
+            <button class="filter-btn" data-category="Paleo">Paleo</button>
             <button class="filter-btn" data-category="Tips & Tricks">Tips & Tricks</button>
             <button class="filter-btn" data-category="Recipes">Recipes</button>
         </div>
@@ -285,53 +286,26 @@
     </footer>
 
     <script src="../script.js"></script>
-    <script src="config.js"></script>
     <script>
         let allPosts = [];
         let currentFilter = 'all';
 
-        // Airtable Configuration from config.js
-        const AIRTABLE_API_KEY = BLOG_CONFIG.AIRTABLE_API_KEY;
-        const AIRTABLE_BASE_ID = BLOG_CONFIG.AIRTABLE_BASE_ID;
-        const AIRTABLE_TABLE_NAME = BLOG_CONFIG.AIRTABLE_TABLE_NAME;
-
-        // Load posts from Airtable
+        // Load posts from local JSON file
         async function loadPosts() {
             try {
-                const airtableUrl = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula={Published}=1&sort[0][field]=Date&sort[0][direction]=desc`;
+                const response = await fetch('posts.json');
                 
-                const response = await fetch(airtableUrl, {
-                    headers: {
-                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`
-                    }
-                });
-
                 if (!response.ok) {
-                    throw new Error(`Airtable API error: ${response.status}`);
+                    throw new Error(`Failed to load posts: ${response.status}`);
                 }
 
-                const data = await response.json();
-                
-                // Transform Airtable data to blog post format
-                allPosts = data.records.map(record => ({
-                    id: record.id,
-                    title: record.fields.Title || 'Untitled',
-                    slug: record.fields.Slug || '',
-                    excerpt: record.fields.Excerpt || '',
-                    content: record.fields.Content || '',
-                    author: record.fields.Author || 'Taastee Team',
-                    date: record.fields.Date || new Date().toISOString().split('T')[0],
-                    category: record.fields.Category || 'Tips & Tricks',
-                    image: record.fields.Image?.[0]?.url || '../images/tim-chow-pa_McjjynOA-unsplash.jpg',
-                    readTime: record.fields.ReadTime || '5 min read'
-                }));
-
-                console.log(`Loaded ${allPosts.length} posts from Airtable`);
+                allPosts = await response.json();
+                console.log(`Loaded ${allPosts.length} posts from posts.json`);
                 displayPosts(allPosts);
             } catch (error) {
-                console.error('Error loading posts from Airtable:', error);
+                console.error('Error loading posts:', error);
                 document.getElementById('noPosts').style.display = 'block';
-                document.getElementById('noPosts').textContent = 'Error loading blog posts. Please check your Airtable configuration.';
+                document.getElementById('noPosts').textContent = 'Error loading blog posts. Please try again later.';
             }
         }
 
