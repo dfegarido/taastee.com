@@ -31,6 +31,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Generate blog config from secrets
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_TABLE_NAME: ${{ secrets.AIRTABLE_TABLE_NAME }}
+        run: |
+          cat > blog/config.js << EOF
+          // Airtable Configuration
+          // Generated from GitHub Secrets during deployment
+          
+          const BLOG_CONFIG = {
+              AIRTABLE_API_KEY: '${AIRTABLE_API_KEY}',
+              AIRTABLE_BASE_ID: '${AIRTABLE_BASE_ID}',
+              AIRTABLE_TABLE_NAME: '${AIRTABLE_TABLE_NAME}'
+          };
+          EOF
+          echo "✅ blog/config.js generated successfully"
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
