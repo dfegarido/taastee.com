@@ -88,8 +88,8 @@
                 <h1 class="step-title">What's your height?</h1>
                 <p class="step-subtitle">We need this for accurate calorie calculations</p>
                 <div class="input-group">
-                    <input type="number" class="input-field" id="heightCm" placeholder="Height" min="120" max="220">
-                    <span class="input-unit">cm</span>
+                    <input type="text" class="input-field" id="heightFeet" placeholder="e.g., 5'2 or 5.5">
+                    <span class="input-unit">ft</span>
                 </div>
                 <button class="btn-continue" onclick="nextStep()">Continue</button>
             </div>
@@ -99,8 +99,8 @@
                 <h1 class="step-title">What's your current weight?</h1>
                 <p class="step-subtitle">Be honest - we're here to help!</p>
                 <div class="input-group">
-                    <input type="number" class="input-field" id="currentWeight" placeholder="Current weight" min="30" max="250">
-                    <span class="input-unit" id="weightUnit">kg</span>
+                    <input type="number" class="input-field" id="currentWeight" placeholder="Current weight" min="66" max="550">
+                    <span class="input-unit" id="weightUnit">lbs</span>
                 </div>
                 <button class="btn-continue" onclick="nextStep()">Continue</button>
             </div>
@@ -110,8 +110,8 @@
                 <h1 class="step-title">What's your target weight?</h1>
                 <p class="step-subtitle">Set a realistic goal</p>
                 <div class="input-group">
-                    <input type="number" class="input-field" id="targetWeight" placeholder="Target weight" min="30" max="250">
-                    <span class="input-unit" id="targetWeightUnit">kg</span>
+                    <input type="number" class="input-field" id="targetWeight" placeholder="Target weight" min="66" max="550">
+                    <span class="input-unit" id="targetWeightUnit">lbs</span>
                 </div>
                 <button class="btn-continue" onclick="nextStep()">Continue</button>
             </div>
@@ -803,8 +803,8 @@
                     Check your inbox for your custom meal plan. We've sent it to the email address you provided.
                     You'll receive weekly meal plans and helpful tips to support your health journey.
                 </p>
-                <button class="btn-continue" onclick="window.location.href='index.html'" style="margin-top: 2rem;">
-                    Back to Home →
+                <button class="btn-continue" onclick="window.location.href='blog/blog.html'" style="margin-top: 2rem;">
+                    Read Our Blog →
                 </button>
             </div>
 

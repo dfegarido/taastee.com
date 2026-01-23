@@ -148,8 +148,8 @@ function updateProgress() {
 function validateStep(step) {
     const stepNumber = step.dataset.step;
     
-    // Check for required inputs
-    const inputs = step.querySelectorAll('input.input-field[type="number"], input.input-field[type="email"]');
+    // Check for required inputs (including text inputs for height)
+    const inputs = step.querySelectorAll('input.input-field[type="number"], input.input-field[type="email"], input.input-field[type="text"]');
     for (let input of inputs) {
         if (input.offsetParent !== null && !input.value) { // visible and empty
             input.focus();
@@ -167,6 +167,49 @@ function validateStep(step) {
             userData[input.id] = input.value;
         }
     });
+    
+    // Special handling for height input (step 3) - parse formats like "5'2" or "5.5"
+    if (stepNumber === '3') {
+        const heightInput = document.getElementById('heightFeet');
+        if (heightInput && heightInput.value) {
+            const heightValue = heightInput.value.trim();
+            // Check if it contains apostrophe (e.g., 5'2)
+            if (heightValue.includes("'")) {
+                const parts = heightValue.split("'");
+                const feet = parseInt(parts[0]) || 0;
+                const inches = parseInt(parts[1]) || 0;
+                
+                // Validate range
+                if (feet < 4 || feet > 7 || inches < 0 || inches > 11) {
+                    heightInput.focus();
+                    heightInput.style.borderColor = '#ff6b35';
+                    alert('Please enter a valid height between 4\'0" and 7\'11"');
+                    setTimeout(() => {
+                        heightInput.style.borderColor = '';
+                    }, 2000);
+                    return false;
+                }
+                
+                userData.heightFeet = feet;
+                userData.heightInches = inches;
+                userData.heightFormatted = `${feet}'${inches}`;
+            } else {
+                // Assume decimal feet (e.g., 5.5)
+                const feet = parseFloat(heightValue);
+                if (isNaN(feet) || feet < 4 || feet > 7.9) {
+                    heightInput.focus();
+                    heightInput.style.borderColor = '#ff6b35';
+                    alert('Please enter a valid height between 4 and 7.9 feet');
+                    setTimeout(() => {
+                        heightInput.style.borderColor = '';
+                    }, 2000);
+                    return false;
+                }
+                userData.heightFeet = feet;
+                userData.heightFormatted = `${feet} ft`;
+            }
+        }
+    }
     
     // Save checkbox data
     const checkboxes = step.querySelectorAll('input[type="checkbox"]:checked');
@@ -272,19 +315,23 @@ async function submitToJotForm(data) {
     // Age
     if (data.age) formData.append('q7_age', data.age);
     
-    // Height with unit (e.g., "161 cm")
-    if (data.heightCm) {
-        formData.append('q40_height40', `${data.heightCm} cm`);
+    // Height with unit (e.g., "5'2" or "5.5 ft")
+    if (data.heightFormatted) {
+        formData.append('q40_height40', data.heightFormatted);
+    } else if (data.heightFeet && data.heightInches !== undefined) {
+        formData.append('q40_height40', `${data.heightFeet}'${data.heightInches}`);
+    } else if (data.heightFeet) {
+        formData.append('q40_height40', `${data.heightFeet} ft`);
     }
     
-    // Current Weight with unit (e.g., "56 kg")
+    // Current Weight with unit (e.g., "150 lbs")
     if (data.currentWeight) {
-        formData.append('q41_currentWeight', `${data.currentWeight} kg`);
+        formData.append('q41_currentWeight', `${data.currentWeight} lbs`);
     }
     
-    // Target Weight with unit (e.g., "60 kg")
+    // Target Weight with unit (e.g., "140 lbs")
     if (data.targetWeight) {
-        formData.append('q42_targetWeight', `${data.targetWeight} kg`);
+        formData.append('q42_targetWeight', `${data.targetWeight} lbs`);
     }
     
     // Primary Goal (step 1)
